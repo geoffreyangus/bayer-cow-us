@@ -12,16 +12,13 @@ ex = Experiment()
 @ex.config
 def my_config():
     experiment_dir = 'experiment/'
-    num_epochs = 5
-    resume = False
 
 @ex.capture
-def run_experiment(experiment_dir, resume):
-    if os.path.isfile(os.path.join(experiment_dir, 'metrics.json')):
-        if not resume:
-            print('This exists!')
-        else:
-            print('running')
+def run_experiment(experiment_dir, num_epochs):
+    print(experiment_dir)
+    for i in range(num_epochs):
+        print(f'Epoch {i} of {num_epochs}')
+    print(ex.observers)
 
 @ex.command
 def build_dataset(raw_dir, out_dir):

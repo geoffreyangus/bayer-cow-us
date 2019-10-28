@@ -1,0 +1,5 @@
+{
+  "experiment_dir": "experiment/",
+  "num_epochs": 29,
+  "seed": 96637951
+}
