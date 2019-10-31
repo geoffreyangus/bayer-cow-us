@@ -127,10 +127,6 @@ class DataBuilder:
                     _log.warning(f'{loop_filename} is not an AVI file. Continuing.')
                     self.metadata['meta.num_files_skipped'] += 1
 
-                if loop_id in exam_group:
-                    _log.info(f'{loop_id} exists in {str(exam_group.directory)}. Continuing.')
-                    continue
-
                 raw_loop_path = path.join(raw_exam_path, loop_filename)
                 raw_loop = skvideo.io.vread(raw_loop_path)
                 raw_loop_shape = raw_loop.shape
