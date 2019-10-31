@@ -8,7 +8,6 @@ import cv2
 import matplotlib.pyplot as plt
 from matplotlib import animation
 import skvideo.io
-from cow_tus.data.transforms import resize_clip
 
 def play(video):
     """
@@ -32,9 +31,9 @@ def process_loop(filepath, size=(120, 160), skip=1):
     """
     """
     video = skvideo.io.vread(filepath)
-    # video = resize_clip(video, size)
+    video = resize_clip(video, size)
     D, H, W, C = video.shape
-    # video = video[::skip, :, W//4:(3*W)//4, 0]
+    video = video[::skip, :, W//4:(3*W)//4, 0]
     return video
 
 def process_loops(filedir, size=(120, 160), skip=1):

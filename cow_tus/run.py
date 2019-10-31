@@ -4,16 +4,12 @@ import os
 import sys
 
 from sacred import Experiment
+from config import init_config
 
 # from cow_tus.models.zoo import *
 
 ex = Experiment()
-
-@ex.config
-def my_config():
-    experiment_dir = 'experiment/'
-    num_epochs = 5
-    resume = False
+init_config(ex)
 
 @ex.capture
 def run_experiment(experiment_dir, resume):
