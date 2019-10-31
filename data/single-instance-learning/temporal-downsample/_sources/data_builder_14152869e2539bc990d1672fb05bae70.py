@@ -89,10 +89,6 @@ class DataBuilder:
                 _log.warning(f'{raw_exam_path} not found. Continuing.')
                 self.metadata['meta.num_exams_skipped'] += 1
                 continue
-            if len(os.listdir(raw_exam_path)) == 0:
-                _log.warning(f'{raw_exam_path} contains no files. Continuing.')
-                self.metadata['meta.num_exams_skipped'] += 1
-                continue
 
             # determine its score
             tus_score = attrs['raw.tus_score']
@@ -130,7 +126,6 @@ class DataBuilder:
                 if loop_filename.rfind('.AVI') == -1:
                     _log.warning(f'{loop_filename} is not an AVI file. Continuing.')
                     self.metadata['meta.num_files_skipped'] += 1
-                    continue
 
                 loop_id = loop_filename[:loop_filename.rfind('.AVI')].replace(" ", "")
                 if loop_id in exam_group:
@@ -174,6 +169,8 @@ class DataBuilder:
         with open(metadata_path, 'w') as f:
             f.write(yaml.dump(self.metadata))
         ex.add_artifact(metadata_path)
+
+
 
 
 @ex.config_hook

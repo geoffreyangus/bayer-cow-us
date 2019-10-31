@@ -1,0 +1,16 @@
+binary.num_abnormals: 52
+binary.num_normals: 35
+config.hypothesis_conditions:
+- single-instance-learning
+- temporal-downsample
+config.out_dir: /data/cow-tus-data/processed
+config.raw_dir: /data/cow-tus-data/raw
+meta.exdir_directory: /data/cow-tus-data/processed.exdir/single-instance-learning/temporal-downsample
+meta.num_exams: 0
+meta.num_exams_skipped: 2
+meta.num_files_skipped: 0
+meta.num_loops: 0
+multiclass.num_0: 35
+multiclass.num_1: 21
+multiclass.num_2: 17
+multiclass.num_3: 14
