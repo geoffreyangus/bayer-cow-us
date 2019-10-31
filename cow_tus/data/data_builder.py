@@ -133,6 +133,7 @@ class DataBuilder:
                     continue
 
                 raw_loop_path = path.join(raw_exam_path, loop_filename)
+                _log.info(f'reading {raw_loop_path}...')
                 raw_loop = skvideo.io.vread(raw_loop_path)
                 raw_loop_shape = raw_loop.shape
 
