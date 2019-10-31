@@ -127,6 +127,7 @@ class DataBuilder:
                     _log.warning(f'{loop_filename} is not an AVI file. Continuing.')
                     self.metadata['meta.num_files_skipped'] += 1
 
+                loop_id = loop_filename[:loop_filename.rfind('.AVI')].replace(" ", "")
                 if loop_id in exam_group:
                     _log.info(f'{loop_id} exists in {str(exam_group.directory)}. Continuing.')
                     continue
@@ -141,8 +142,6 @@ class DataBuilder:
                     args = preprocess_fn['args']
                     loop = getattr(preprocess, fn)(loop, **args)
                 loop_shape = loop.shape
-
-                loop_id = loop_filename[:loop_filename.rfind('.AVI')].replace(" ", "")
                 loop_dataset = exam_group.require_dataset(loop_id, data=loop)
 
                 loop_dataset.attrs.update({
