@@ -123,35 +123,54 @@ class DataSplitter:
         """
         """
         while True:
-            split_to_label_freqs = {split: {class_type: 0
-                                            for class_type in split_to_quota[split]}
-                                    for split in split_to_quota}
             random.shuffle(animal_id_to_exams)
-            added = 0
-            for split, count in split_to_count.items():
-                i = added
-                while i < added + count:
-                    animal_id, exams = animal_id_to_exams[i]
-                    for exam in exams:
-                        exam_id = exam['exam_id']
-                        label = exam['label']
-                        split_to_exam_ids[split].append(exam_id)
-                        split_to_label_freq[split][label] += 1
-                    i += 1
-            if self._verify_freqs(split_to_label_freqs, split_to_quota):
+            result = self._get_candidate(animal_id_to_exams, split_to_quota)
+            if result == None:
+                continue
+            else:
+                split_to_label_freqs, split_to_exam_ids = result
+            print('freqs', split_to_label_freqs)
+            if self._verify_label_freqs(split_to_label_freqs, split_to_quota):
                 break
 
         return split_to_exam_ids
 
     @ex.capture
+    def _get_candidate(self, animal_id_to_exams, split_to_quota, split_to_count):
+        """
+        """
+        print('hello')
+        split_to_exam_ids = defaultdict(list)
+        split_to_label_freqs = {split: {class_type: 0
+                                        for class_type in split_to_quota[split]}
+                                for split in split_to_quota}
+        i = 0
+        for split, count in split_to_count.items():
+            added = 0
+            while added < count:
+                if i < len(animal_id_to_exams):
+                    return None
+                animal_id, exams = animal_id_to_exams[i]
+                for exam in exams:
+                    exam_id = exam['exam_id']
+                    label = exam['label']
+                    split_to_exam_ids[split].append(exam_id)
+                    split_to_label_freqs[split][label] += 1
+                added += len(exams)
+                i += 1
+                print(i, added)
+        return split_to_label_freqs, split_to_exam_ids
+
+    @ex.capture
     def _verify_label_freqs(self, split_to_label_freqs, split_to_quota, train_split):
         """
         """
+        print('quota', split_to_quota)
         for split, quota in split_to_quota.items():
-            if train_split:
+            if split == train_split:
                 continue
             for class_type, quota_count in quota.items():
-                if split_to_label_freq[split][class_type] < quota_count:
+                if split_to_label_freqs[split][class_type] < quota_count:
                     return False
         return True
 
