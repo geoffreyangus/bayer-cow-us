@@ -79,7 +79,7 @@ class DataSplitter:
         labels = []
         exam_groups = attrs_df.groupby('exdir.exam_id')
         for exam_id, exam_group in exam_groups:
-            labels.append(list(set(exam_group['preprocessed.global_label_multiclass']))[0])
+            labels.append(list(set(exam_group['label.global_multiclass_label']))[0])
         label_freqs = sorted(Counter(labels).items())
 
         split_to_quota = defaultdict(dict)
@@ -105,7 +105,7 @@ class DataSplitter:
         for animal_id, animal_group in animal_groups:
             exam_groups = animal_group.groupby('exdir.exam_id')
             for exam_id, exam_group in exam_groups:
-                label = exam_group.loc[exam_id]['preprocessed.global_label_multiclass']
+                label = exam_group.loc[exam_id]['label.global_multiclass_label']
                 try:
                     label = list(set(label))[0]
                 except:
@@ -185,7 +185,7 @@ class DataSplitter:
 
             exam_groups = split_df.groupby('exdir.exam_id')
             for exam_id, exam_group in exam_groups:
-                split_to_labels[split].append(list(set(exam_group['preprocessed.global_label_multiclass']))[0])
+                split_to_labels[split].append(list(set(exam_group['label.global_multiclass_label']))[0])
 
         split_to_counts = defaultdict(dict)
         for split, labels in split_to_labels.items():
