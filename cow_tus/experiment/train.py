@@ -36,6 +36,7 @@ def config(metrics):
         device = 'cpu'
 
     num_epochs = 20
+    dataset_dir = 'data/split/by-animal-number/hold-out-validation'
 
     model = {
         'class_name': 'BaseModel',

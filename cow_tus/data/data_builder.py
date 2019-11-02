@@ -167,7 +167,8 @@ class DataBuilder:
 
         out_attrs_path = path.join(group_dir, 'attrs.csv')
         out_attrs_df = pd.DataFrame(out_attrs_data)
-        out_attrs_df.to_csv(out_attrs_path, index=False)
+        out_attrs_df.set_index('exdir.exam_id')
+        out_attrs_df.to_csv(out_attrs_path)
         ex.add_artifact(out_attrs_path)
 
         metadata_path = path.join(group_dir, 'metadata.yaml')
