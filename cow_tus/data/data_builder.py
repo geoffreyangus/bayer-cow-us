@@ -101,8 +101,6 @@ class DataBuilder:
 
         out_attrs_data = []
         for i, row in tqdm(raw_attrs_df.iterrows(), total=len(raw_attrs_df)):
-            if i == 5:
-                break
             raw_attrs = dict(row)
             attrs = {f'raw.{k}': v for k, v in raw_attrs.items()}
 
