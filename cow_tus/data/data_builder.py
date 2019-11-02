@@ -147,11 +147,13 @@ class DataBuilder:
                 if np.isnan(attrs[f'raw.{loop_type}']):
                     if global_binary_label == 0:
                         loop_labels[f'label.{loop_type}'] = 0
+                        self.metadata[f'meta.total.num_loops_labeled'] += 1
                         self.metadata['meta.total.num_loops_inferred_label'] += 1
                     else:
                         loop_labels[f'label.{loop_type}'] = np.nan
                 else:
                     loop_labels[f'label.{loop_type}'] = int(attrs[f'raw.{loop_type}']) - 1
+                    self.metadata[f'meta.total.num_loops_labeled'] += 1
             exam_group.attrs.update(loop_labels)
 
             concat = []
@@ -174,8 +176,6 @@ class DataBuilder:
                     if not np.isnan(instance_label):
                         instance_binary_label = 0 if int(instance_label) == 0 else 1
                         instance_multiclass_label = int(instance_label)
-
-                        self.metadata[f'meta.total.num_loops_labeled'] += 1
                         self.metadata[f'meta.total.instance.binary.num_{instance_binary_label}'] += 1
                         self.metadata[f'meta.total.instance.multiclass.num_{instance_multiclass_label}'] += 1
 
