@@ -116,45 +116,44 @@ class DataSplitter:
                 })
 
         animal_id_to_exams = list(animal_id_to_exams.items())
-        random.shuffle(animal_id_to_exams)
         return animal_id_to_exams
 
     @ex.capture
     def _assign(self, animal_id_to_exams, split_to_quota, split_to_count, train_split):
         """
         """
-        queue = deque(animal_id_to_exams)
-
-        split_to_exam_ids = defaultdict(list)
-        for split, quota in split_to_quota.items():
-            # do not enforce quota on train_split
-            if split == train_split:
-                continue
-
-            added = {class_type: 0 for class_type in quota.keys()}
-            print(quota)
-            while any(added[class_type] < quota[class_type] for class_type in quota.keys()):
-                animal_id, exams = queue.popleft()
-                if sum(added.values()) + len(exams) <= split_to_count[split]:
+        while True:
+            split_to_label_freqs = {split: {class_type: 0
+                                            for class_type in split_to_quota[split]}
+                                    for split in split_to_quota}
+            random.shuffle(animal_id_to_exams)
+            added = 0
+            for split, count in split_to_count.items():
+                i = added
+                while i < added + count:
+                    animal_id, exams = animal_id_to_exams[i]
                     for exam in exams:
                         exam_id = exam['exam_id']
                         label = exam['label']
-
                         split_to_exam_ids[split].append(exam_id)
-                        added[label] += 1
-                else:
-                    queue.append((animal_id, exams))
-            print(added)
-            print('==')
+                        split_to_label_freq[split][label] += 1
+                    i += 1
+            if self._verify_freqs(split_to_label_freqs, split_to_quota):
+                break
 
-        print({split: len(exam_ids) for split, exam_ids in split_to_exam_ids.items()})
-        # allocate the rest of the exams
-        while len(split_to_exam_ids[train_split]) != split_to_count[train_split]:
-            animal_id, exams = queue.popleft()
-            split_to_exam_ids[train_split] += [exam['exam_id'] for exam in exams]
-
-        assert len(queue) == 0, 'queue is non-empty'
         return split_to_exam_ids
+
+    @ex.capture
+    def _verify_label_freqs(self, split_to_label_freqs, split_to_quota, train_split):
+        """
+        """
+        for split, quota in split_to_quota.items():
+            if train_split:
+                continue
+            for class_type, quota_count in quota.items():
+                if split_to_label_freq[split][class_type] < quota_count:
+                    return False
+        return True
 
     @ex.capture
     def _format(self, attrs_df, split_to_exam_ids):
