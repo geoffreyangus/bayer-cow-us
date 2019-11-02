@@ -1,0 +1,17 @@
+{
+  "__doc__": "\n",
+  "data_dir": "data/single-instance-learning/temporal-downsample",
+  "group_dir": "data/split/by-animal-number/hold-out-validation",
+  "hypothesis_conditions": [
+    "by-animal-number",
+    "hold-out-validation"
+  ],
+  "seed": 801043276,
+  "split_to_count": {
+    "test": 15,
+    "train": 56,
+    "valid": 15
+  },
+  "strata_key": "raw.animal_number",
+  "train_split": "train"
+}

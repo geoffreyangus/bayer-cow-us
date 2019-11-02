@@ -1,50 +1,36 @@
 {
   "artifacts": [
-    "attrs.csv",
+    "train.csv",
+    "valid.csv",
+    "test.csv",
     "metadata.yaml"
   ],
   "command": "main",
   "experiment": {
     "base_dir": "/home/Gangus/cow-tus/cow_tus/data",
     "dependencies": [
-      "exdir==0.4.0+12.gdd8f40f",
       "numpy==1.17.3",
       "pandas==0.25.2",
-      "Pillow==6.2.1",
       "PyYAML==5.1.2",
-      "sacred==0.8.0",
-      "scipy==1.3.1",
-      "sk-video==1.1.10",
-      "torch==1.3.0",
-      "torchvision==0.4.1",
-      "tqdm==4.36.1"
+      "sacred==0.8.0"
     ],
-    "mainfile": "data_builder.py",
-    "name": "builder",
+    "mainfile": "data_splitter.py",
+    "name": "splitter",
     "repositories": [
       {
-        "commit": "5099e129086be0d0624bde59df8f8264fa881e51",
-        "dirty": false,
-        "url": "https://code.stanford.edu/lungrenlab/cow-tus.git"
-      },
-      {
-        "commit": "5099e129086be0d0624bde59df8f8264fa881e51",
+        "commit": "c2b97048e4f779a813f1f5c6304a6fcc466d5e8f",
         "dirty": false,
         "url": "https://code.stanford.edu/lungrenlab/cow-tus.git"
       }
     ],
     "sources": [
       [
-        "data_builder.py",
-        "_sources/data_builder_14152869e2539bc990d1672fb05bae70.py"
-      ],
-      [
-        "transforms/preprocessing.py",
-        "_sources/preprocessing_6772f47780876e4f4409a702b6996288.py"
+        "data_splitter.py",
+        "_sources/data_splitter_7b5e98b4ddf0d5dd039f61c652ba2906.py"
       ]
     ]
   },
-  "heartbeat": "2019-10-31T21:05:22.683557",
+  "heartbeat": "2019-11-02T04:42:39.987121",
   "host": {
     "ENV": {},
     "cpu": "Intel(R) Core(TM) i7-6850K CPU @ 3.60GHz",
@@ -72,11 +58,11 @@
   },
   "meta": {
     "command": "main",
-    "comment": "Hopefully the final run. This run contains the temporally downsampled single-instance learning dataset",
+    "comment": "final splitting run for this configuration. Implements stratified random sampling to create a train, test, and hold out validation set.",
     "options": {
       "--beat-interval": null,
       "--capture": null,
-      "--comment": "Hopefully the final run. This run contains the temporally downsampled single-instance learning dataset",
+      "--comment": "final splitting run for this configuration. Implements stratified random sampling to create a train, test, and hold out validation set.",
       "--debug": false,
       "--enforce_clean": true,
       "--file_storage": null,
@@ -101,7 +87,7 @@
   },
   "resources": [],
   "result": null,
-  "start_time": "2019-10-31T20:51:47.630359",
+  "start_time": "2019-11-02T04:42:39.833742",
   "status": "COMPLETED",
-  "stop_time": "2019-10-31T21:05:22.680886"
+  "stop_time": "2019-11-02T04:42:39.985643"
 }

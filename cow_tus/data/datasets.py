@@ -1,7 +1,10 @@
 import os
+import os.path as path
 
 import numpy as np
 import torch
+from torch.utils.data import Dataset
+import
 from sacred import Ingredient
 
 from cow_tus.data.preprocessing import training_ingredient as preprocessing_ingredient
@@ -10,6 +13,7 @@ from cow_tus.data.augmentation import training_ingredient as augmentation_ingred
 
 training_ingredient = Ingredient('datasets', ingredients=[preprocessing_ingredient,
                                                           augmentation_ingredient])
+
 
 @training_ingredient.config
 def training_config(preprocessing, augmentation):
@@ -62,3 +66,17 @@ def testing_config(preprocessing):
             'augmentation_fns': []
         }
     }
+
+
+class GlobalDataset(Dataset):
+
+    def __init__(self, split_str, split_dir, preprocess_fns, augmentation_fns):
+        """
+        """
+        self.exam_path = path.join(split_dir, f'{split_str}.csv')
+        self.exam_df = pd.read_csv(split_path, index=0)
+
+    def __getitem__(self, idx):
+        """
+        """
+        self._get_X(idx)
