@@ -123,5 +123,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# exdir source
+# experimental packages
 .exdir
+.emmental

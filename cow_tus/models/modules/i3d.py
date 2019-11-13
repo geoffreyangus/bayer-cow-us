@@ -246,7 +246,7 @@ class I3D(torch.nn.Module):
 
         if self.modality == 'gray':
             # Use an untrained layer with in_channels == 1
-            conv3d_1a_7x7 = Unit3Dpy(
+            self.conv3d_1a_7x7 = Unit3Dpy(
                 out_channels=64,
                 in_channels=1,
                 kernel_size=(7, 7, 7),
@@ -256,6 +256,7 @@ class I3D(torch.nn.Module):
     def forward(self, input_tensor):
         """
         """
+        print(input_tensor.dtype)
         out = self.conv3d_1a_7x7(input_tensor)
         out = self.maxPool3d_2a_3x3(out)
         out = self.conv3d_2b_1x1(out)

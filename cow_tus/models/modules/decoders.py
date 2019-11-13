@@ -1,4 +1,5 @@
 import os
+import math
 
 import torch
 import torch.nn as nn
@@ -36,6 +37,7 @@ class AttDecoder(nn.Module):
     def aggregate(self, encoding):
         """
         """
+        print(encoding.shape)
         # flatten encoding
         batch_size, encoding_size, length, height, width = encoding.shape
         encoding = encoding.view(
@@ -55,6 +57,13 @@ class AttDecoder(nn.Module):
         contexts = torch.matmul(scores.unsqueeze(2), values)
         contexts_flat = contexts.squeeze(2).view(batch_size, -1)
         return contexts_flat
+
+    def classify(self, x):
+        """
+        """
+        for layer in self.layers:
+            x = layer(x)
+        return x
 
     def forward(self, encoding):
         """

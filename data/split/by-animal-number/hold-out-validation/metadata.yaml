@@ -27,17 +27,17 @@ split.label_split_quotas:
     3: 2
 split.label_to_freq:
   test:
-    0: 8
-    1: 3
-    2: 2
-    3: 2
-  train:
-    0: 19
-    1: 15
-    2: 13
-    3: 9
-  valid:
     0: 7
     1: 3
-    2: 2
-    3: 3
+    2: 3
+    3: 2
+  train:
+    0: 21
+    1: 14
+    2: 11
+    3: 10
+  valid:
+    0: 6
+    1: 4
+    2: 3
+    3: 2

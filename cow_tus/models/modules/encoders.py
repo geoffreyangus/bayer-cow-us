@@ -1,6 +1,8 @@
 """
 """
-from cow_tus.modules.i3d import I3D
+import torch
+
+from cow_tus.models.modules.i3d import I3D
 
 
 class I3DEncoder(I3D):
@@ -26,10 +28,11 @@ class I3DEncoder(I3D):
         """
         Encodes a stack of images.
         args:
-            input_tensor    (torch.tensor) shape (batch_size, channels, length, height=200, width=200)
+            input_tensor    (torch.tensor) shape (batch_size, length, height=200, width=200, channels)
         return:
             output (torch.tensor)   shape (batch_size, 1024, ~length/8, 7, 7)
         """
+        print(input_tensor.shape)
         input_tensor = input_tensor.permute((0, 4, 1, 2, 3))
         out = self.conv3d_1a_7x7(input_tensor)
         out = self.maxPool3d_2a_3x3(out)

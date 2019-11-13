@@ -1,3 +1,4 @@
+import uuid
 import os
 import os.path as path
 
@@ -8,10 +9,7 @@ from tqdm import tqdm
 from sacred import Experiment
 from sacred.observers import FileStorageObserver
 
-# import cow_tus.models.zoo as models
-# import cow_tus.models.losses as losses
-# import cow_tus.data.datasets as datasets
-# import cow_tus.data.dataloaders as dataloaders
+import cow_tus.models.losses as losses
 from cow_tus.experiment.harness import Harness
 
 from cow_tus.data.datasets import training_ingredient as datasets_ingredient
@@ -26,7 +24,7 @@ ex = Experiment(EXPERIMENT_NAME, ingredients=[datasets_ingredient,
 
 
 @ex.config
-def config(metrics):
+def config(metrics, datasets):
     """
     """
     devices = [0, 1]
@@ -36,52 +34,63 @@ def config(metrics):
         device = 'cpu'
 
     num_epochs = 20
+    remote_dir = '/data/cow-tus-data/weights'
+
     dataset_dir = 'data/split/by-animal-number/hold-out-validation'
+    labels_path = 'data/labels/globals.csv'
 
     model = {
-        'class_name': 'BaseModel',
+        'class_name': 'Model',
         'args': {
-            'devices': devices,
             'modules': [
                 {
-                    'class_name': 'ClippedI3D',
+                    'class_name': 'I3DEncoder',
                     'args': {
                         'modality': 'flow',
-                        'weights_path': 'models/i3d/model_flow.pth',
+                        'weights_path': 'i3d/model_flow.pth',
                     },
 
-                    'srcs': ['_raw.loops'],
+                    'srcs': ['_raw-loops'],
                     'name': 'shared',
-                    'dsts': ['classification.binary.primary'],
+                    'dsts': ['classification-binary-primary'],
                 },
                 {
-                    'class_name': 'AttentionDecoder',
-                    'args': {},
+                    'class_name': 'AttDecoder',
+                    'args': {
+                        'num_classes': 2
+                    },
 
                     'srcs': ['shared'],
-                    'name': 'classification.binary.primary',
+                    'name': 'classification-binary-primary',
                     'dsts': ['_loss'],
                 }
             ],
             'module_defaults': {
-                'ClippedI3D': {},
-                'AttentionDecoder': {}
+                'I3DEncoder': {},
+                'AttDecoder': {}
             },
-            'load_path': [],
+            'load_paths': [],
+            'devices': devices,
         }
+    }
+
+    task_to_labels = {
+        'primary': 'primary'
     }
 
     tasks = {}
     for module in model['args']['modules']:
         if '_loss' in module['dsts']:
             module_name = module['name']
-            module_namespace = module_name.split('.')
+            module_namespace = module_name.split('-')
             task_type, task = module_namespace[:-1], module_namespace[-1]
 
             tasks[module_name] = {
-                'task': task
+                'task': task,
                 'type': task_type[0],                                # classification | regression (for model.predict functionality)
                 'metric_fns': metrics['type_to_fns'][task_type[-1]], # most specific task group distinction (for metrics / analysis)
+                'metric_primary': 'roc_auc',
+                'labels_src': task_to_labels[task]
             }
 
     optimizer = {
@@ -102,6 +111,8 @@ class TrainingHarness(Harness):
     def __init__(self):
         """
         """
+        self.uuid = uuid.uuid1()
+
         self.datasets = self._init_datasets()
         self.dataloaders = self._init_dataloaders()
         self.tasks = self._init_tasks()
@@ -110,9 +121,12 @@ class TrainingHarness(Harness):
         self.optimizer = self._init_optimizer()
         self.loss_fn = self._init_loss()
 
+        self.task_best_metric = {task['task']: task['metric_primary'] for _, task in self.tasks.items()}
+        self.task_bests = {task['task']: 0.0 for _, task in self.tasks.items()}
+
     @ex.capture
-    def _init_datasets(self, datasets):
-        return super()._init_datasets(datasets)
+    def _init_datasets(self, dataset_dir, labels_path, datasets, tasks):
+        return super()._init_datasets(dataset_dir, labels_path, datasets, tasks)
 
     @ex.capture
     def _init_dataloaders(self, dataloaders):
@@ -124,56 +138,51 @@ class TrainingHarness(Harness):
 
     @ex.capture(prefix="model")
     def _init_model(self, class_name, args):
-        return super()._init_model(class_name, **args)
+        return super()._init_model(class_name, args)
 
     @ex.capture(prefix='optimizer')
-    def _init_optim(self, class_name, args):
-        return getattr(optimizers, class_name)(**args)
+    def _init_optimizer(self, class_name, args):
+        return getattr(optimizers, class_name)(self.model.parameters(), **args)
 
     @ex.capture(prefix='loss')
     def _init_loss(self, class_name, args):
         return getattr(losses, class_name)(**args)
 
     @ex.capture
-    def train(self, num_epochs, summary_period):
+    def train(self, num_epochs):
         """
         """
         valid_metrics_df, valid_breakdown_df = self.score_for_split('valid', breakdown=True)
         for i in range(num_epochs):
-            summary = i % summary_period == 0
-            if summary:
-                train_metrics_df, train_breakdown_df = self.train_for_epoch(summary=summary)
-                # TODO: implement saving train metrics
-            else:
-                self.train_for_epoch(summary=summary)
+            train_metrics_df, train_breakdown_df = self.train_for_epoch()
             valid_metrics_df, valid_breakdown_df = self.score_for_split('valid', breakdown=True)
             for task in self.tasks:
-                if valid_metrics_df.loc[valid_metrics_df['task'] == 'task'][self.primary_metric] > self.task_bests[task]:
-                    # TODO: save model/valid_preds for EACH task best
-                    pass
+                task_metric = valid_metrics_df.loc[valid_metrics_df['task'] == 'task'][self.task_best_metric[task]]
+                if task_metric > self.task_bests[task]:
+                    self.task_bests[task] = task_metric
+                    self._save(train_metrics_df, train_breakdown_df,
+                               valid_metrics_df, valid_breakdown_df, save_type=f'best_{task}')
+            self._save(train_metrics_df, train_breakdown_df,
+                       valid_metrics_df, valid_breakdown_df, save_type='last')
+
         return valid_metrics_df, valid_breakdown_df
 
     @ex.capture
-    def train_for_epoch(self, summary=False):
+    def train_for_epoch(self):
         """
         """
-        if not summary:
-            for i, (X, y_true, info) in enumerate(self.dataloaders['train']):
-                self._optimize(X, y_true)
-            return
-        else:
-            all_y_true = defaultdict(list)
-            all_probas = defaultdict(list)
-            all_info = []
-            for i, (X, y_true, info) in enumerate(self.dataloaders['train']):
-                output, loss = self._optimize(X, y_true)
-                probas = self.model.to_probas(output)
-                for module_name in self.task_heads:
-                    task = self.tasks_heads[module_name]['task']
-                    all_info[module_name] += info
-                    all_y_true[module_name] += y_true[task]
-                    all_probas[module_name] += probas[module_name]
-            return self.compute_metrics(all_y_true, all_probas, all_info, breakdown=True)
+        all_y_true = defaultdict(list)
+        all_probas = defaultdict(list)
+        all_info = []
+        for i, (X, y_true, info) in enumerate(self.dataloaders['train']):
+            output, loss = self._optimize(X, y_true)
+            probas = self.model.to_probas(output)
+            for module_name in self.task_heads:
+                task = self.tasks_heads[module_name]['task']
+                all_info[module_name] += info
+                all_y_true[module_name] += y_true[task]
+                all_probas[module_name] += probas[module_name]
+        return self.compute_metrics(all_y_true, all_probas, all_info, breakdown=True)
 
     @ex.capture
     def _optimize(self, X, y_true):
@@ -183,6 +192,36 @@ class TrainingHarness(Harness):
         loss = 0.0
         # TODO: backprop here
         return output, loss
+
+    @ex.capture
+    def _save(self,
+              train_metrics_df, train_breakdown_df,
+              valid_metrics_df, valid_breakdown_df,
+              group_dir, remote_dir, save_type="last"):
+        """
+        """
+        save_dir = path.join(group_dir, save_type)
+
+        weights_path = path.join(remote_dir, f'{self.uuid}_{save_type}')
+        weights_link = path.join(save_dir, 'weights.link')
+        self.model.save_weights(weights_path, link_path=link_path)
+        ex.add_artifact(link_path)
+
+        train_metrics_path = path.join(save_dir, 'train_metrics.csv')
+        train_metrics_df.to_csv(train_metrics_path)
+        ex.add_artifact(train_metrics_path)
+
+        train_breakdown_df.to_csv(save_dir)
+        train_breakdown_df.to_csv(train_breakdown_path)
+        ex.add_artifact(train_breakdown_path)
+
+        valid_metrics_path = path.join(save_dir, 'valid_metrics.csv')
+        valid_metrics_df.to_csv(valid_metrics_path)
+        ex.add_artifact(valid_metrics_path)
+
+        valid_breakdown_df.to_csv(save_dir)
+        valid_breakdown_df.to_csv(valid_breakdown_path)
+        ex.add_artifact(valid_breakdown_path)
 
 
 @ex.capture

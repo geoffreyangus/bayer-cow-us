@@ -77,7 +77,6 @@ def crop_clip_vertically_by_proportion(clip, ratio):
     return crop_clip(clip, min_h, min_w, max_h, max_w)
 
 
-
 def crop_clip(clip, min_h, min_w, h, w):
     if isinstance(clip[0], np.ndarray):
         cropped = np.array([img[min_h:min_h + h, min_w:min_w + w, :] for img in clip])

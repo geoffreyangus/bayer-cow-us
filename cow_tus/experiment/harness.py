@@ -9,10 +9,10 @@ from tqdm import tqdm
 from sacred import Experiment
 from sacred.observers import FileStorageObserver
 
-# import cow_tus.models.zoo as models
-# import cow_tus.models.losses as losses
-# import cow_tus.data.datasets as datasets
-# import cow_tus.data.dataloaders as dataloaders
+import cow_tus.models.models as models
+import cow_tus.models.losses as losses
+import cow_tus.data.datasets as datasets
+import cow_tus.data.dataloaders as dataloaders
 
 from cow_tus.data.datasets import training_ingredient as datasets_ingredient
 from cow_tus.data.dataloaders import training_ingredient as dataloaders_ingredient
@@ -20,41 +20,43 @@ from cow_tus.analysis.metrics.metrics import metrics_ingredient
 
 
 class Harness:
+
     def __init__(self):
         """
         """
         raise NotImplementedError('please subclass Harness to use with sacred configs.')
 
-    def init_datasets(self, datasets_config={}):
+    def _init_datasets(self, dataset_dir, labels_path, dataset_configs={}, tasks=[]):
         """
         """
         def init_dataset(class_name, args):
-            return getattr(datasets, class_name)(split_name, **args)
+            args = {**args, 'tasks': tasks}
+            return getattr(datasets, class_name)(dataset_dir, labels_path, **args)
 
-        datasets = {}
-        for split, split_config in datasets_config['splits'].items():
-            datasets[split] = init_dataset(datasets_config['split_names'][split], **split_config)
+        split_to_dataset = {}
+        for split, split_config in dataset_configs['splits'].items():
+            split_to_dataset[split] = init_dataset(**split_config)
 
-        return datasets
+        return split_to_dataset
 
-    def init_dataloaders(self, dataloaders_config={}):
+    def _init_dataloaders(self, dataloader_configs={}):
         """
         """
-        def init_dataloader(self, class_name, args, split):
+        def init_dataloader(split, class_name, args):
             return getattr(dataloaders, class_name)(self.datasets[split], **args)
 
-        dataloaders = {}
-        for split, split_config in dataloaders_config['splits'].items():
-            dataloaders[split] = init_dataloader(split, **split_config)
+        split_to_dataloader = {}
+        for split, split_config in dataloader_configs['splits'].items():
+            split_to_dataloader[split] = init_dataloader(split, **split_config)
 
-        return dataloaders
+        return split_to_dataloader
 
-    def init_tasks(self, tasks):
+    def _init_tasks(self, tasks):
         """
         """
         return tasks
 
-    def init_model(self, class_name, args, tasks):
+    def _init_model(self, class_name, args):
         """
         """
         return getattr(models, class_name)(**args)
@@ -106,7 +108,7 @@ class Harness:
         """
         raise NotImplementedError
 
-    def score_for_split(self, split, breakdown=True)
+    def score_for_split(self, split, breakdown=True):
         """
         """
         all_y_true = defaultdict(list)
@@ -150,7 +152,7 @@ class Harness:
                     breakdown_data.append({
                         'task': self.tasks[module_name]['task'],
                         'type': self.tasks[module_name]['type'],
-                        'info':  all_info[module_name]['info'][i]
+                        'info':  all_info[module_name]['info'][i],
                         'label': all_y_true[module_name]['y_true'][i],
                         'proba': all_probas[module_name]['probas'][i],
                     })
