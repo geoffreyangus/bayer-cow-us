@@ -24,14 +24,14 @@ def config():
     """
     data_dir = 'data/single-instance-learning/temporal-downsample'
 
-    hypothesis_conditions = ['by-animal-number', 'hold-out-validation']
+    hypothesis_conditions = ['by-animal-number', 'no-holdout-test']
     group_dir = path.join('data', 'split', *hypothesis_conditions)
 
     strata_key = 'raw.animal_number'
     split_to_count = {
         'train': 0, # will be replaced in the next line
-        'valid': 15,
-        'test': 15
+        'valid': 30,
+        'test': 0
     }
     split_to_count['train'] = len(pd.read_csv(path.join(data_dir, 'attrs.csv'), index_col=0).index.unique()) - sum(split_to_count.values())
     train_split = 'train'

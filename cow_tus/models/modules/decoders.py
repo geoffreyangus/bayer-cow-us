@@ -37,7 +37,7 @@ class AttDecoder(nn.Module):
     def aggregate(self, encoding):
         """
         """
-        print(encoding.shape)
+        # print(encoding.shape)
         # flatten encoding
         batch_size, encoding_size, length, height, width = encoding.shape
         encoding = encoding.view(

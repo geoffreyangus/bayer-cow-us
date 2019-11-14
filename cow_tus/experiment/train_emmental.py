@@ -12,6 +12,7 @@ from emmental.scorer import Scorer
 from emmental.task import EmmentalTask
 import torch
 import torch.nn as nn
+from torch.utils.data import RandomSampler
 from torchvision import transforms
 from sacred import Experiment
 from sacred.observers import FileStorageObserver
@@ -32,7 +33,7 @@ def config(transforms):
     """
     Configuration for training harness.
     """
-    hypothesis_conditions = ['single-instance-learning', 'multiclass']
+    hypothesis_conditions = ['single-instance-learning', 'multiclass', 'mixed-supervision']
     exp_dir = path.join('experiments', *hypothesis_conditions)
 
     meta_config = {
@@ -41,7 +42,12 @@ def config(transforms):
 
     logging_config = {
         'evaluation_freq': 1,
-        'checkpointing': True
+        'checkpointing': True,
+        'checkpointer_config': {
+            'checkpoint_metric': {
+                'accuracy': 'max'
+            }
+        }
     }
 
     dataset_class = 'TUSDataset'
@@ -72,12 +78,19 @@ def config(transforms):
         'train': {
             'batch_size': 1,
             'num_workers': 8,
-            'shuffle': True
+            'shuffle': False
         },
         'valid': {
             'batch_size': 1,
             'num_workers': 8,
             'shuffle': True
+        }
+    }
+
+    sampler_configs = {
+        'train': {
+            'num_samples': 150,
+            'replacement': True
         }
     }
 
@@ -103,8 +116,8 @@ def config(transforms):
             'warmup_unit': 'batch',
             'lr_scheduler': 'step',
             'step_config': {
-                'step_size': 25,
-                'gamma': 0.1
+                'step_size': 6,
+                'gamma': 0.5
             }
         },
     }
@@ -145,17 +158,23 @@ class TrainingHarness(object):
         return datasets
 
     @ex.capture
-    def _init_dataloaders(self, _log, dataloader_configs, task_to_label_dict):
+    def _init_dataloaders(self, _log, dataloader_configs, sampler_configs, task_to_label_dict):
         dataloaders = []
         for split in ['train', 'valid']:
-            dataloaders.append(
-                EmmentalDataLoader(
-                    task_to_label_dict=task_to_label_dict,
-                    dataset=self.datasets[split],
-                    split=split,
-                    **dataloader_configs[split],
-                )
+            dataloader_config = dataloader_configs[split]
+            if split == 'train':
+                dataloader_config = {
+                    'sampler': RandomSampler(data_source=self.datasets[split],
+                                             **sampler_configs['train']),
+                    **dataloader_config
+                }
+            dl = EmmentalDataLoader(
+                task_to_label_dict=task_to_label_dict,
+                dataset=self.datasets[split],
+                split=split,
+                **dataloader_config,
             )
+            dataloaders.append(dl)
             _log.info(f'Built dataloader for {split} set.')
         return dataloaders
 
@@ -183,7 +202,7 @@ class TrainingHarness(object):
                 ],
                 loss_func=partial(ce_loss, task_name),
                 output_func=partial(output, task_name),
-                scorer=Scorer(metrics=['accuracy', 'roc_auc', 'precision', 'recall', 'f1']),
+                scorer=Scorer(metrics=['accuracy']),
             )
             for task_name in task_to_label_dict.keys()
         ]

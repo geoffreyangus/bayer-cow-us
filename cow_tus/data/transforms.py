@@ -43,12 +43,21 @@ def training_config():
         #     'args': {}
         # },
         {
+            'fn': 'extract_instance',
+            'args': {
+                'p_add_same_class': 0.0,
+                'p_add_diff_class': 0.0,
+                'instance_only': True,
+                'splits': ['train']
+            }
+        },
+        {
             'fn': 'random_offset',
             'args': {
                 'offset': 3,
                 'offset_range': [0, 1]
             }
-        },
+        }
         # {
         #     'fn': 'random_flip',
         #     'args': {
@@ -203,7 +212,7 @@ def get_resize_sizes(im_h, im_w, size):
     return oh, ow
 
 
-def random_offset(clip, offset, offset_range=[0,1]):
+def random_offset(clip, offset=3, offset_range=[0,1]):
     """
     """
     assert offset >= max(offset_range), \
