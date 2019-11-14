@@ -40,8 +40,8 @@ def config(transforms):
     }
 
     logging_config = {
-        'evaluation_freq': 40,
-        'checkpointing': False
+        'evaluation_freq': 1,
+        'checkpointing': True
     }
 
     dataset_class = 'TUSDataset'

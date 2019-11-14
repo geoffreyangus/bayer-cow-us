@@ -54,10 +54,13 @@ class TUSDataset(EmmentalDataset):
         """
         """
         rows = self.split_df.loc[exam_id]
-        loop_paths = list(rows['exdir.loop_path'])
+        if isinstance(rows, pd.Series):
+            loop_paths = [rows['exdir.loop_data_path']]
+        else:
+            loop_paths = list(rows['exdir.loop_data_path'])
         loops = []
         for loop_path in loop_paths:
-            loop = np.load(f'{loop_path}/data.npy')
+            loop = np.load(f'{"/data4" + loop_path[5:]}')
             loops.append(loop)
 
         if self.shuffle_transform:
