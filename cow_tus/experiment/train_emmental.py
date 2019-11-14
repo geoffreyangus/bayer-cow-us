@@ -62,7 +62,7 @@ def config(transforms):
             'num_workers': 8,
             'shuffle': True
         },
-        'test': {
+        'valid': {
             'batch_size': 1,
             'num_workers': 8,
             'shuffle': True
@@ -119,7 +119,7 @@ class TrainingHarness(object):
     @ex.capture
     def _init_datasets(self, _log, dataset_class, dataset_args, transform_fns):
         datasets = {}
-        for split in ['train', 'test']:
+        for split in ['train', 'valid']:
             datasets[split] = getattr(all_datasets, dataset_class)(
                 split_str=split,
                 transform_fns=transform_fns[split],
@@ -131,7 +131,7 @@ class TrainingHarness(object):
     @ex.capture
     def _init_dataloaders(self, _log, dataloader_configs, task_to_label_dict):
         dataloaders = []
-        for split in ['train', 'test']:
+        for split in ['train', 'valid']:
             dataloaders.append(
                 EmmentalDataLoader(
                     task_to_label_dict=task_to_label_dict,
