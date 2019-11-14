@@ -25,7 +25,10 @@ class TUSDataset(EmmentalDataset):
         self.shuffle_transform = 'shuffle' in [f['fn'] for f in transform_fns]
 
         X_dict = {'exam_ids': []}
-        Y_dict = {'primary':  []}
+        Y_dict = {
+            'primary':  [],
+            'primary_multiclass': []
+        }
 
         for idx, exam_id in enumerate(self.exam_ids):
             X_dict['exam_ids'].append(exam_id)
@@ -83,15 +86,16 @@ class TUSDataset(EmmentalDataset):
         """
         rows = self.labels_df.loc[exam_id]
         y = {}
-        rows_target = rows['primary']
-        if not isinstance(rows_target, pd.Series):
-            soft_target = np.array(rows_target.iloc[0])
-            for exam_id, row in rows_target.iterrows():
-                assert np.array_equal(soft_target, np.array(row)), \
-                    f'exam_id {exam_id} has conflicting targets'
-        else:
-            soft_target = np.array(rows_target)
-        y['primary'] = np.argmax(soft_target)
+        for key in ['primary', 'primary_multiclass']:
+            rows_target = rows[key]
+            if not isinstance(rows_target, pd.Series):
+                soft_target = np.array(rows_target.iloc[0])
+                for exam_id, row in rows_target.iterrows():
+                    assert np.array_equal(soft_target, np.array(row)), \
+                        f'exam_id {exam_id} has conflicting targets'
+            else:
+                soft_target = np.array(rows_target)
+            y[key] = np.argmax(soft_target)
         return y
 
 

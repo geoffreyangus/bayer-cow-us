@@ -1,0 +1,129 @@
+{
+  "artifacts": [],
+  "command": "main",
+  "experiment": {
+    "base_dir": "/home/gangus/cow-tus/cow_tus/experiment",
+    "dependencies": [
+      "emmental==0.0.4",
+      "numpy==1.17.4",
+      "Pillow==6.2.1",
+      "sacred==0.8.0",
+      "scipy==1.3.2",
+      "torch==1.3.1",
+      "torchvision==0.4.2"
+    ],
+    "mainfile": "train_emmental.py",
+    "name": "trainer",
+    "repositories": [
+      {
+        "commit": "65be68f1a69953d8a76c073a28b5a6afbd72caa3",
+        "dirty": true,
+        "url": "https://code.stanford.edu/lungrenlab/cow-tus.git/"
+      },
+      {
+        "commit": "65be68f1a69953d8a76c073a28b5a6afbd72caa3",
+        "dirty": true,
+        "url": "https://code.stanford.edu/lungrenlab/cow-tus.git/"
+      }
+    ],
+    "sources": [
+      [
+        "../data/transforms.py",
+        "_sources/transforms_771e98e3f0cd2fc355c24f8e8b26c31d.py"
+      ],
+      [
+        "train_emmental.py",
+        "_sources/train_emmental_e3892a07cc931563cd8216f3077394bb.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/home/gangus/cow-tus/.env/lib/python3.7/site-packages/sacred/config/captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"cow_tus/experiment/train_emmental.py\", line 204, in main\n    trainer = TrainingHarness()\n",
+    "  File \"cow_tus/experiment/train_emmental.py\", line 119, in __init__\n    self.model = self._init_model()\n",
+    "  File \"/home/gangus/cow-tus/.env/lib/python3.7/site-packages/sacred/config/captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"cow_tus/experiment/train_emmental.py\", line 187, in _init_model\n    model = EmmentalModel(name='cow-tus-model', tasks=tasks)\n",
+    "  File \"/home/gangus/cow-tus/.emmental/src/emmental/model.py\", line 52, in __init__\n    self._build_network(tasks)\n",
+    "  File \"/home/gangus/cow-tus/.emmental/src/emmental/model.py\", line 96, in _build_network\n    self.add_task(task)\n",
+    "  File \"/home/gangus/cow-tus/.emmental/src/emmental/model.py\", line 132, in add_task\n    self._move_to_device()\n",
+    "  File \"/home/gangus/cow-tus/.emmental/src/emmental/model.py\", line 73, in _move_to_device\n    self.to(torch.device(f\"cuda:{Meta.config['model_config']['device']}\"))\n",
+    "  File \"/home/gangus/cow-tus/.env/lib/python3.7/site-packages/torch/nn/modules/module.py\", line 426, in to\n    return self._apply(convert)\n",
+    "  File \"/home/gangus/cow-tus/.env/lib/python3.7/site-packages/torch/nn/modules/module.py\", line 202, in _apply\n    module._apply(fn)\n",
+    "  File \"/home/gangus/cow-tus/.env/lib/python3.7/site-packages/torch/nn/modules/module.py\", line 202, in _apply\n    module._apply(fn)\n",
+    "  File \"/home/gangus/cow-tus/.env/lib/python3.7/site-packages/torch/nn/modules/module.py\", line 202, in _apply\n    module._apply(fn)\n",
+    "  [Previous line repeated 2 more times]\n",
+    "  File \"/home/gangus/cow-tus/.env/lib/python3.7/site-packages/torch/nn/modules/module.py\", line 224, in _apply\n    param_applied = fn(param)\n",
+    "  File \"/home/gangus/cow-tus/.env/lib/python3.7/site-packages/torch/nn/modules/module.py\", line 424, in convert\n    return t.to(device, dtype if t.is_floating_point() else None, non_blocking)\n",
+    "RuntimeError: CUDA error: out of memory\n"
+  ],
+  "heartbeat": "2019-11-14T08:06:27.294049",
+  "host": {
+    "ENV": {},
+    "cpu": "Intel(R) Xeon(R) CPU E5-2620 v4 @ 2.10GHz",
+    "gpus": {
+      "driver_version": "430.34",
+      "gpus": [
+        {
+          "model": "TITAN V",
+          "persistence_mode": false,
+          "total_memory": 12062
+        },
+        {
+          "model": "TITAN V",
+          "persistence_mode": false,
+          "total_memory": 12066
+        },
+        {
+          "model": "TITAN V",
+          "persistence_mode": false,
+          "total_memory": 12066
+        },
+        {
+          "model": "TITAN V",
+          "persistence_mode": false,
+          "total_memory": 12066
+        }
+      ]
+    },
+    "hostname": "u07082019000",
+    "os": [
+      "Linux",
+      "Linux-4.15.0-55-generic-x86_64-with-Ubuntu-18.04-bionic"
+    ],
+    "python_version": "3.7.4"
+  },
+  "meta": {
+    "command": "main",
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserve": false,
+      "COMMAND": null,
+      "UPDATE": [],
+      "help": false,
+      "with": false
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2019-11-14T08:06:24.924063",
+  "status": "FAILED",
+  "stop_time": "2019-11-14T08:06:27.296592"
+}

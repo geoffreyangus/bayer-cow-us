@@ -32,7 +32,7 @@ def config(transforms):
     """
     Configuration for training harness.
     """
-    hypothesis_conditions = ['single-instance-learning', 'baseline']
+    hypothesis_conditions = ['single-instance-learning', 'multiclass']
     exp_dir = path.join('experiments', *hypothesis_conditions)
 
     meta_config = {
@@ -52,8 +52,20 @@ def config(transforms):
 
     transform_fns = {
         'train': transforms['preprocess_fns'] + transforms['augmentation_fns'],
-        'valid': transforms['preprocess_fns'],
-        'test':  transforms['preprocess_fns'],
+        'valid': transforms['preprocess_fns'] + [{
+                                                    'fn': 'random_offset',
+                                                    'args': {
+                                                        'offset': 3,
+                                                        'offset_range': [0, 1]
+                                                    }
+                                                }],
+        'test':  transforms['preprocess_fns'] + [{
+                                                    'fn': 'random_offset',
+                                                    'args': {
+                                                        'offset': 3,
+                                                        'offset_range': [0, 1]
+                                                    }
+                                                }],
     }
 
     dataloader_configs = {
@@ -70,7 +82,7 @@ def config(transforms):
     }
 
     task_to_label_dict = {
-        'primary': 'primary'
+        'primary_multiclass': 'primary_multiclass',
     }
 
     encoder_class = 'I3DEncoder'
@@ -83,14 +95,17 @@ def config(transforms):
     decoder_args = {}
 
     learner_config = {
-        'n_epochs': 20,
+        'n_epochs': 30,
         'valid_split': 'valid',
-        'optimizer_config': {'optimizer': 'sgd', 'lr': 0.001, 'l2': 0.000},
+        'optimizer_config': {'optimizer': 'adam', 'lr': 0.01, 'l2': 0.000},
         'lr_scheduler_config': {
             'warmup_steps': None,
             'warmup_unit': 'batch',
-            'lr_scheduler': 'linear',
-            'min_lr': 1e-6,
+            'lr_scheduler': 'step',
+            'step_config': {
+                'step_size': 25,
+                'gamma': 0.1
+            }
         },
     }
 
@@ -111,6 +126,7 @@ class TrainingHarness(object):
         Meta.update_config(
             config={
                 'meta_config': {**meta_config, 'seed': _seed},
+                'model_config': {'device': meta_config['device']},
                 'learner_config': learner_config,
                 'logging_config': logging_config
             }
@@ -152,7 +168,7 @@ class TrainingHarness(object):
                 module_pool=nn.ModuleDict(
                     {
                         f'encoder_module': encoder_module,
-                        f'decoder_module_{task_name}': getattr(modules, decoder_class)(2, **decoder_args),
+                        f'decoder_module_{task_name}': getattr(modules, decoder_class)(4, **decoder_args),
                     }
                 ),
                 task_flow=[

@@ -34,44 +34,45 @@ def training_config():
         {
             'fn': 'normalize',
             'args': {}
-        }
+        },
     ]
 
     augmentation_fns = [
-        {
-            'fn': 'shuffle',
-            'args': {}
-        },
+        # {
+        #     'fn': 'shuffle',
+        #     'args': {}
+        # },
         {
             'fn': 'random_offset',
             'args': {
-                'offset_range': [0, 3]
+                'offset': 3,
+                'offset_range': [0, 1]
             }
         },
-        {
-            'fn': 'random_flip',
-            'args': {
-                'axis': 0
-            }
-        },
-        {
-            'fn': 'random_flip',
-            'args': {
-                'axis': 1
-            }
-        },
-        {
-            'fn': 'random_flip',
-            'args': {
-                'axis': 2
-            }
-        },
-        {
-            'fn': 'jitter',
-            'args': {
-                'brightness': [0.5]
-            }
-        }
+        # {
+        #     'fn': 'random_flip',
+        #     'args': {
+        #         'axis': 0
+        #     }
+        # },
+        # {
+        #     'fn': 'random_flip',
+        #     'args': {
+        #         'axis': 1
+        #     }
+        # },
+        # {
+        #     'fn': 'random_flip',
+        #     'args': {
+        #         'axis': 2
+        #     }
+        # },
+        # {
+        #     'fn': 'jitter',
+        #     'args': {
+        #         'brightness': [0.5]
+        #     }
+        # }
     ]
 
 builder_ingredient = Ingredient('preprocessing')
@@ -202,10 +203,12 @@ def get_resize_sizes(im_h, im_w, size):
     return oh, ow
 
 
-def random_offset(clip, offset_range=[0,1]):
+def random_offset(clip, offset, offset_range=[0,1]):
     """
     """
-    return clip[random.randint(*offset_range)::max(offset_range)]
+    assert offset >= max(offset_range), \
+        f'offset {offset} must be greater than or equal to max(offset_range)'
+    return clip[random.randint(*offset_range)::offset]
 
 
 def random_flip(clip, axis=0):

@@ -1,0 +1,29 @@
+[2019-11-14 09:14:15,785][INFO] emmental.meta:106 - Setting logging directory to: experiments/single-instance-learning/multiclass/_emmental_logs/2019_11_14/09_14_15/28846f7e
+[2019-11-14 09:14:15,799][INFO] emmental.meta:60 - Loading Emmental default config from /home/gangus/cow-tus/.emmental/src/emmental/emmental-default-config.yaml.
+[2019-11-14 09:14:15,800][INFO] emmental.meta:160 - Updating Emmental config from user provided config.
+[2019-11-14 09:14:15,993][INFO] emmental.data:52 - Auto generate uids for dataset cow-tus-dataset under _uids_.
+[2019-11-14 09:14:15,993][INFO] __main__._init_datasets:142 - Loaded train split.
+[2019-11-14 09:14:16,049][INFO] emmental.data:52 - Auto generate uids for dataset cow-tus-dataset under _uids_.
+[2019-11-14 09:14:16,049][INFO] __main__._init_datasets:142 - Loaded valid split.
+[2019-11-14 09:14:16,050][INFO] __main__._init_dataloaders:157 - Built dataloader for train set.
+[2019-11-14 09:14:16,050][INFO] __main__._init_dataloaders:157 - Built dataloader for valid set.
+[2019-11-14 09:14:16,178][INFO] root:244 - Loading I3D weights from i3d/model_flow.pth
+[2019-11-14 09:14:16,268][INFO] emmental.task:48 - Created task: primary
+[2019-11-14 09:14:16,284][INFO] emmental.model:70 - Moving model to GPU (cuda:0).
+[2019-11-14 09:14:20,715][INFO] emmental.model:56 - Created emmental model cow-tus-model that contains task {'primary'}.
+[2019-11-14 09:14:20,715][INFO] emmental.model:70 - Moving model to GPU (cuda:0).
+[2019-11-14 09:14:20,717][INFO] emmental.logging.logging_manager:37 - Evaluating every 1 epoch.
+[2019-11-14 09:14:20,717][INFO] emmental.logging.logging_manager:47 - Checkpointing every 1 epoch.
+[2019-11-14 09:14:20,717][INFO] emmental.logging.checkpointer:51 - Save checkpoints at experiments/single-instance-learning/multiclass/_emmental_logs/2019_11_14/09_14_15/28846f7e every 1 epoch
+[2019-11-14 09:14:20,717][INFO] emmental.logging.checkpointer:83 - No checkpoints saved before 0 epoch.
+[2019-11-14 09:14:20,719][INFO] emmental.learner:92 - Using optimizer Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.01
+    weight_decay: 0.0
+)
+[2019-11-14 09:14:20,720][INFO] emmental.learner:448 - Start learning...
+
+Epoch 0::   0%|          | 0/56 [00:00<?, ?it/s]

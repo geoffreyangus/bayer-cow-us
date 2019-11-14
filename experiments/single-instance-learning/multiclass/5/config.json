@@ -1,0 +1,167 @@
+{
+  "__doc__": "\nConfiguration for training harness.\n",
+  "dataloader_configs": {
+    "train": {
+      "batch_size": 1,
+      "num_workers": 8,
+      "shuffle": true
+    },
+    "valid": {
+      "batch_size": 1,
+      "num_workers": 8,
+      "shuffle": true
+    }
+  },
+  "dataset_args": {
+    "dataset_dir": "data/split/by-animal-number/hold-out-validation",
+    "labels_path": "data/labels/globals.csv"
+  },
+  "dataset_class": "TUSDataset",
+  "decoder_args": {},
+  "decoder_class": "AttDecoder",
+  "encoder_args": {
+    "modality": "gray",
+    "weights_path": "i3d/model_flow.pth"
+  },
+  "encoder_class": "I3DEncoder",
+  "exp_dir": "experiments/single-instance-learning/multiclass",
+  "hypothesis_conditions": [
+    "single-instance-learning",
+    "multiclass"
+  ],
+  "learner_config": {
+    "lr_scheduler_config": {
+      "lr_scheduler": "step",
+      "step_config": {
+        "gamma": 0.1,
+        "step_size": 25
+      },
+      "warmup_steps": null,
+      "warmup_unit": "batch"
+    },
+    "n_epochs": 30,
+    "optimizer_config": {
+      "l2": 0.0,
+      "lr": 0.01,
+      "optimizer": "adam"
+    },
+    "valid_split": "valid"
+  },
+  "logging_config": {
+    "checkpointing": true,
+    "evaluation_freq": 1
+  },
+  "meta_config": {
+    "device": 0
+  },
+  "seed": 912936254,
+  "task_to_label_dict": {
+    "primary": "primary"
+  },
+  "transform_fns": {
+    "test": [
+      {
+        "args": {
+          "size": [
+            224,
+            224
+          ]
+        },
+        "fn": "resize_clip"
+      },
+      {
+        "args": {},
+        "fn": "normalize"
+      },
+      {
+        "args": {
+          "offset": 3,
+          "offset_range": [
+            0,
+            1
+          ]
+        },
+        "fn": "random_offset"
+      }
+    ],
+    "train": [
+      {
+        "args": {
+          "size": [
+            224,
+            224
+          ]
+        },
+        "fn": "resize_clip"
+      },
+      {
+        "args": {},
+        "fn": "normalize"
+      },
+      {
+        "args": {
+          "offset": 3,
+          "offset_range": [
+            0,
+            1
+          ]
+        },
+        "fn": "random_offset"
+      }
+    ],
+    "valid": [
+      {
+        "args": {
+          "size": [
+            224,
+            224
+          ]
+        },
+        "fn": "resize_clip"
+      },
+      {
+        "args": {},
+        "fn": "normalize"
+      },
+      {
+        "args": {
+          "offset": 3,
+          "offset_range": [
+            0,
+            1
+          ]
+        },
+        "fn": "random_offset"
+      }
+    ]
+  },
+  "transforms": {
+    "augmentation_fns": [
+      {
+        "args": {
+          "offset": 3,
+          "offset_range": [
+            0,
+            1
+          ]
+        },
+        "fn": "random_offset"
+      }
+    ],
+    "preprocess_fns": [
+      {
+        "args": {
+          "size": [
+            224,
+            224
+          ]
+        },
+        "fn": "resize_clip"
+      },
+      {
+        "args": {},
+        "fn": "normalize"
+      }
+    ]
+  }
+}

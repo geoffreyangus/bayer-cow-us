@@ -1,0 +1,176 @@
+[2019-11-14 09:16:56,432][INFO] emmental.meta:106 - Setting logging directory to: experiments/single-instance-learning/multiclass/_emmental_logs/2019_11_14/09_16_56/5111a4e6
+[2019-11-14 09:16:56,449][INFO] emmental.meta:60 - Loading Emmental default config from /home/gangus/cow-tus/.emmental/src/emmental/emmental-default-config.yaml.
+[2019-11-14 09:16:56,450][INFO] emmental.meta:160 - Updating Emmental config from user provided config.
+[2019-11-14 09:16:56,692][INFO] emmental.data:52 - Auto generate uids for dataset cow-tus-dataset under _uids_.
+[2019-11-14 09:16:56,692][INFO] __main__._init_datasets:144 - Loaded train split.
+[2019-11-14 09:16:56,761][INFO] emmental.data:52 - Auto generate uids for dataset cow-tus-dataset under _uids_.
+[2019-11-14 09:16:56,761][INFO] __main__._init_datasets:144 - Loaded valid split.
+[2019-11-14 09:16:56,762][INFO] __main__._init_dataloaders:159 - Built dataloader for train set.
+[2019-11-14 09:16:56,762][INFO] __main__._init_dataloaders:159 - Built dataloader for valid set.
+[2019-11-14 09:16:56,876][INFO] root:244 - Loading I3D weights from i3d/model_flow.pth
+[2019-11-14 09:16:56,961][INFO] emmental.task:48 - Created task: primary
+[2019-11-14 09:16:56,978][INFO] emmental.model:70 - Moving model to GPU (cuda:0).
+[2019-11-14 09:17:01,218][INFO] emmental.model:56 - Created emmental model cow-tus-model that contains task {'primary'}.
+[2019-11-14 09:17:01,218][INFO] emmental.model:70 - Moving model to GPU (cuda:0).
+[2019-11-14 09:17:01,221][INFO] emmental.logging.logging_manager:37 - Evaluating every 1 epoch.
+[2019-11-14 09:17:01,221][INFO] emmental.logging.logging_manager:47 - Checkpointing every 1 epoch.
+[2019-11-14 09:17:01,221][INFO] emmental.logging.checkpointer:51 - Save checkpoints at experiments/single-instance-learning/multiclass/_emmental_logs/2019_11_14/09_16_56/5111a4e6 every 1 epoch
+[2019-11-14 09:17:01,221][INFO] emmental.logging.checkpointer:83 - No checkpoints saved before 0 epoch.
+[2019-11-14 09:17:01,223][INFO] emmental.learner:92 - Using optimizer Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.01
+    weight_decay: 0.0
+)
+[2019-11-14 09:17:01,224][INFO] emmental.learner:448 - Start learning...
+
+Epoch 0::   0%|          | 0/56 [00:00<?, ?it/s]torch.Size([1, 320, 224, 224, 1])
+torch.Size([1, 1024, 40, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+[2019-11-14 09:17:20,333][WARNING] emmental.metrics.roc_auc:38 - Only one class present in golds.ROC AUC score is not defined in that case, set as nan instead.
+
+Epoch 0::   0%|          | 0/56 [00:19<?, ?it/s, primary/cow-tus-dataset/train/loss=0.689, model/all/train/loss=0.689, primary/cow-tus-dataset/train/accuracy=1, primary/cow-tus-dataset/train/roc_auc=nan, primary/cow-tus-dataset/train/precision=0, primary/cow-tus-dataset/train/recall=0, primary/cow-tus-dataset/train/f1=0, primary/cow-tus-dataset/train/average=nan, model/all/train/micro_average=nan, model/all/train/macro_average=nan, model/all/train/lr=0.01]
+Epoch 0::   2%|▏         | 1/56 [00:19<17:31, 19.11s/it, primary/cow-tus-dataset/train/loss=0.689, model/all/train/loss=0.689, primary/cow-tus-dataset/train/accuracy=1, primary/cow-tus-dataset/train/roc_auc=nan, primary/cow-tus-dataset/train/precision=0, primary/cow-tus-dataset/train/recall=0, primary/cow-tus-dataset/train/f1=0, primary/cow-tus-dataset/train/average=nan, model/all/train/micro_average=nan, model/all/train/macro_average=nan, model/all/train/lr=0.01]torch.Size([1, 360, 224, 224, 1])
+torch.Size([1, 1024, 45, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+[2019-11-14 09:17:21,923][WARNING] emmental.metrics.roc_auc:38 - Only one class present in golds.ROC AUC score is not defined in that case, set as nan instead.
+
+Epoch 0::   2%|▏         | 1/56 [00:20<17:31, 19.11s/it, primary/cow-tus-dataset/train/loss=0.344, model/all/train/loss=0.344, primary/cow-tus-dataset/train/accuracy=1, primary/cow-tus-dataset/train/roc_auc=nan, primary/cow-tus-dataset/train/precision=0, primary/cow-tus-dataset/train/recall=0, primary/cow-tus-dataset/train/f1=0, primary/cow-tus-dataset/train/average=nan, model/all/train/micro_average=nan, model/all/train/macro_average=nan, model/all/train/lr=0.01]
+Epoch 0::   4%|▎         | 2/56 [00:20<12:28, 13.85s/it, primary/cow-tus-dataset/train/loss=0.344, model/all/train/loss=0.344, primary/cow-tus-dataset/train/accuracy=1, primary/cow-tus-dataset/train/roc_auc=nan, primary/cow-tus-dataset/train/precision=0, primary/cow-tus-dataset/train/recall=0, primary/cow-tus-dataset/train/f1=0, primary/cow-tus-dataset/train/average=nan, model/all/train/micro_average=nan, model/all/train/macro_average=nan, model/all/train/lr=0.01]torch.Size([1, 320, 224, 224, 1])
+torch.Size([1, 1024, 40, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+[2019-11-14 09:17:23,105][WARNING] emmental.metrics.roc_auc:38 - Only one class present in golds.ROC AUC score is not defined in that case, set as nan instead.
+
+Epoch 0::   4%|▎         | 2/56 [00:21<12:28, 13.85s/it, primary/cow-tus-dataset/train/loss=0.23, model/all/train/loss=0.23, primary/cow-tus-dataset/train/accuracy=1, primary/cow-tus-dataset/train/roc_auc=nan, primary/cow-tus-dataset/train/precision=0, primary/cow-tus-dataset/train/recall=0, primary/cow-tus-dataset/train/f1=0, primary/cow-tus-dataset/train/average=nan, model/all/train/micro_average=nan, model/all/train/macro_average=nan, model/all/train/lr=0.01]  
+Epoch 0::   5%|▌         | 3/56 [00:21<08:52, 10.05s/it, primary/cow-tus-dataset/train/loss=0.23, model/all/train/loss=0.23, primary/cow-tus-dataset/train/accuracy=1, primary/cow-tus-dataset/train/roc_auc=nan, primary/cow-tus-dataset/train/precision=0, primary/cow-tus-dataset/train/recall=0, primary/cow-tus-dataset/train/f1=0, primary/cow-tus-dataset/train/average=nan, model/all/train/micro_average=nan, model/all/train/macro_average=nan, model/all/train/lr=0.01]torch.Size([1, 320, 224, 224, 1])
+torch.Size([1, 1024, 40, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+
+Epoch 0::   5%|▌         | 3/56 [00:23<08:52, 10.05s/it, primary/cow-tus-dataset/train/loss=393, model/all/train/loss=393, primary/cow-tus-dataset/train/accuracy=0.75, primary/cow-tus-dataset/train/roc_auc=0.333, primary/cow-tus-dataset/train/precision=0, primary/cow-tus-dataset/train/recall=0, primary/cow-tus-dataset/train/f1=0, primary/cow-tus-dataset/train/average=0.217, model/all/train/micro_average=0.217, model/all/train/macro_average=0.217, model/all/train/lr=0.01]
+Epoch 0::   7%|▋         | 4/56 [00:23<06:24,  7.39s/it, primary/cow-tus-dataset/train/loss=393, model/all/train/loss=393, primary/cow-tus-dataset/train/accuracy=0.75, primary/cow-tus-dataset/train/roc_auc=0.333, primary/cow-tus-dataset/train/precision=0, primary/cow-tus-dataset/train/recall=0, primary/cow-tus-dataset/train/f1=0, primary/cow-tus-dataset/train/average=0.217, model/all/train/micro_average=0.217, model/all/train/macro_average=0.217, model/all/train/lr=0.01]torch.Size([1, 319, 224, 224, 1])
+torch.Size([1, 1024, 40, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+
+Epoch 0::   7%|▋         | 4/56 [00:24<06:24,  7.39s/it, primary/cow-tus-dataset/train/loss=783, model/all/train/loss=783, primary/cow-tus-dataset/train/accuracy=0.6, primary/cow-tus-dataset/train/roc_auc=0.25, primary/cow-tus-dataset/train/precision=0, primary/cow-tus-dataset/train/recall=0, primary/cow-tus-dataset/train/f1=0, primary/cow-tus-dataset/train/average=0.17, model/all/train/micro_average=0.17, model/all/train/macro_average=0.17, model/all/train/lr=0.01]     
+Epoch 0::   9%|▉         | 5/56 [00:24<04:41,  5.52s/it, primary/cow-tus-dataset/train/loss=783, model/all/train/loss=783, primary/cow-tus-dataset/train/accuracy=0.6, primary/cow-tus-dataset/train/roc_auc=0.25, primary/cow-tus-dataset/train/precision=0, primary/cow-tus-dataset/train/recall=0, primary/cow-tus-dataset/train/f1=0, primary/cow-tus-dataset/train/average=0.17, model/all/train/micro_average=0.17, model/all/train/macro_average=0.17, model/all/train/lr=0.01]torch.Size([1, 307, 224, 224, 1])
+torch.Size([1, 1024, 39, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+
+Epoch 0::   9%|▉         | 5/56 [00:25<04:41,  5.52s/it, primary/cow-tus-dataset/train/loss=652, model/all/train/loss=652, primary/cow-tus-dataset/train/accuracy=0.667, primary/cow-tus-dataset/train/roc_auc=0.562, primary/cow-tus-dataset/train/precision=0.5, primary/cow-tus-dataset/train/recall=0.5, primary/cow-tus-dataset/train/f1=0.5, primary/cow-tus-dataset/train/average=0.546, model/all/train/micro_average=0.546, model/all/train/macro_average=0.546, model/all/train/lr=0.01]
+Epoch 0::  11%|█         | 6/56 [00:25<03:29,  4.20s/it, primary/cow-tus-dataset/train/loss=652, model/all/train/loss=652, primary/cow-tus-dataset/train/accuracy=0.667, primary/cow-tus-dataset/train/roc_auc=0.562, primary/cow-tus-dataset/train/precision=0.5, primary/cow-tus-dataset/train/recall=0.5, primary/cow-tus-dataset/train/f1=0.5, primary/cow-tus-dataset/train/average=0.546, model/all/train/micro_average=0.546, model/all/train/macro_average=0.546, model/all/train/lr=0.01]torch.Size([1, 360, 224, 224, 1])
+torch.Size([1, 1024, 45, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+
+Epoch 0::  11%|█         | 6/56 [00:26<03:29,  4.20s/it, primary/cow-tus-dataset/train/loss=559, model/all/train/loss=559, primary/cow-tus-dataset/train/accuracy=0.714, primary/cow-tus-dataset/train/roc_auc=0.667, primary/cow-tus-dataset/train/precision=0.667, primary/cow-tus-dataset/train/recall=0.667, primary/cow-tus-dataset/train/f1=0.667, primary/cow-tus-dataset/train/average=0.676, model/all/train/micro_average=0.676, model/all/train/macro_average=0.676, model/all/train/lr=0.01]
+Epoch 0::  12%|█▎        | 7/56 [00:26<02:43,  3.34s/it, primary/cow-tus-dataset/train/loss=559, model/all/train/loss=559, primary/cow-tus-dataset/train/accuracy=0.714, primary/cow-tus-dataset/train/roc_auc=0.667, primary/cow-tus-dataset/train/precision=0.667, primary/cow-tus-dataset/train/recall=0.667, primary/cow-tus-dataset/train/f1=0.667, primary/cow-tus-dataset/train/average=0.676, model/all/train/micro_average=0.676, model/all/train/macro_average=0.676, model/all/train/lr=0.01]torch.Size([1, 320, 224, 224, 1])
+torch.Size([1, 1024, 40, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+
+Epoch 0::  12%|█▎        | 7/56 [00:27<02:43,  3.34s/it, primary/cow-tus-dataset/train/loss=614, model/all/train/loss=614, primary/cow-tus-dataset/train/accuracy=0.625, primary/cow-tus-dataset/train/roc_auc=0.6, primary/cow-tus-dataset/train/precision=0.5, primary/cow-tus-dataset/train/recall=0.667, primary/cow-tus-dataset/train/f1=0.571, primary/cow-tus-dataset/train/average=0.593, model/all/train/micro_average=0.593, model/all/train/macro_average=0.593, model/all/train/lr=0.01]    
+Epoch 0::  14%|█▍        | 8/56 [00:27<02:08,  2.68s/it, primary/cow-tus-dataset/train/loss=614, model/all/train/loss=614, primary/cow-tus-dataset/train/accuracy=0.625, primary/cow-tus-dataset/train/roc_auc=0.6, primary/cow-tus-dataset/train/precision=0.5, primary/cow-tus-dataset/train/recall=0.667, primary/cow-tus-dataset/train/f1=0.571, primary/cow-tus-dataset/train/average=0.593, model/all/train/micro_average=0.593, model/all/train/macro_average=0.593, model/all/train/lr=0.01]torch.Size([1, 320, 224, 224, 1])
+torch.Size([1, 1024, 40, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+
+Epoch 0::  14%|█▍        | 8/56 [00:35<02:08,  2.68s/it, primary/cow-tus-dataset/train/loss=629, model/all/train/loss=629, primary/cow-tus-dataset/train/accuracy=0.556, primary/cow-tus-dataset/train/roc_auc=0.5, primary/cow-tus-dataset/train/precision=0.5, primary/cow-tus-dataset/train/recall=0.5, primary/cow-tus-dataset/train/f1=0.5, primary/cow-tus-dataset/train/average=0.511, model/all/train/micro_average=0.511, model/all/train/macro_average=0.511, model/all/train/lr=0.01]    
+Epoch 0::  16%|█▌        | 9/56 [00:35<03:12,  4.09s/it, primary/cow-tus-dataset/train/loss=629, model/all/train/loss=629, primary/cow-tus-dataset/train/accuracy=0.556, primary/cow-tus-dataset/train/roc_auc=0.5, primary/cow-tus-dataset/train/precision=0.5, primary/cow-tus-dataset/train/recall=0.5, primary/cow-tus-dataset/train/f1=0.5, primary/cow-tus-dataset/train/average=0.511, model/all/train/micro_average=0.511, model/all/train/macro_average=0.511, model/all/train/lr=0.01]torch.Size([1, 306, 224, 224, 1])
+torch.Size([1, 1024, 39, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+
+Epoch 0::  16%|█▌        | 9/56 [00:36<03:12,  4.09s/it, primary/cow-tus-dataset/train/loss=587, model/all/train/loss=587, primary/cow-tus-dataset/train/accuracy=0.5, primary/cow-tus-dataset/train/roc_auc=0.44, primary/cow-tus-dataset/train/precision=0.5, primary/cow-tus-dataset/train/recall=0.4, primary/cow-tus-dataset/train/f1=0.444, primary/cow-tus-dataset/train/average=0.457, model/all/train/micro_average=0.457, model/all/train/macro_average=0.457, model/all/train/lr=0.01]
+Epoch 0::  18%|█▊        | 10/56 [00:36<02:27,  3.20s/it, primary/cow-tus-dataset/train/loss=587, model/all/train/loss=587, primary/cow-tus-dataset/train/accuracy=0.5, primary/cow-tus-dataset/train/roc_auc=0.44, primary/cow-tus-dataset/train/precision=0.5, primary/cow-tus-dataset/train/recall=0.4, primary/cow-tus-dataset/train/f1=0.444, primary/cow-tus-dataset/train/average=0.457, model/all/train/micro_average=0.457, model/all/train/macro_average=0.457, model/all/train/lr=0.01]torch.Size([1, 320, 224, 224, 1])
+torch.Size([1, 1024, 40, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+
+Epoch 0::  18%|█▊        | 10/56 [00:37<02:27,  3.20s/it, primary/cow-tus-dataset/train/loss=533, model/all/train/loss=533, primary/cow-tus-dataset/train/accuracy=0.545, primary/cow-tus-dataset/train/roc_auc=0.5, primary/cow-tus-dataset/train/precision=0.6, primary/cow-tus-dataset/train/recall=0.5, primary/cow-tus-dataset/train/f1=0.545, primary/cow-tus-dataset/train/average=0.538, model/all/train/micro_average=0.538, model/all/train/macro_average=0.538, model/all/train/lr=0.01]
+Epoch 0::  20%|█▉        | 11/56 [00:37<01:56,  2.60s/it, primary/cow-tus-dataset/train/loss=533, model/all/train/loss=533, primary/cow-tus-dataset/train/accuracy=0.545, primary/cow-tus-dataset/train/roc_auc=0.5, primary/cow-tus-dataset/train/precision=0.6, primary/cow-tus-dataset/train/recall=0.5, primary/cow-tus-dataset/train/f1=0.545, primary/cow-tus-dataset/train/average=0.538, model/all/train/micro_average=0.538, model/all/train/macro_average=0.538, model/all/train/lr=0.01]torch.Size([1, 319, 224, 224, 1])
+torch.Size([1, 1024, 40, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+
+Epoch 0::  20%|█▉        | 11/56 [00:38<01:56,  2.60s/it, primary/cow-tus-dataset/train/loss=489, model/all/train/loss=489, primary/cow-tus-dataset/train/accuracy=0.583, primary/cow-tus-dataset/train/roc_auc=0.543, primary/cow-tus-dataset/train/precision=0.667, primary/cow-tus-dataset/train/recall=0.571, primary/cow-tus-dataset/train/f1=0.615, primary/cow-tus-dataset/train/average=0.596, model/all/train/micro_average=0.596, model/all/train/macro_average=0.596, model/all/train/lr=0.01]
+Epoch 0::  21%|██▏       | 12/56 [00:38<01:35,  2.16s/it, primary/cow-tus-dataset/train/loss=489, model/all/train/loss=489, primary/cow-tus-dataset/train/accuracy=0.583, primary/cow-tus-dataset/train/roc_auc=0.543, primary/cow-tus-dataset/train/precision=0.667, primary/cow-tus-dataset/train/recall=0.571, primary/cow-tus-dataset/train/f1=0.615, primary/cow-tus-dataset/train/average=0.596, model/all/train/micro_average=0.596, model/all/train/macro_average=0.596, model/all/train/lr=0.01]torch.Size([1, 280, 224, 224, 1])
+torch.Size([1, 1024, 35, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+
+Epoch 0::  21%|██▏       | 12/56 [00:39<01:35,  2.16s/it, primary/cow-tus-dataset/train/loss=451, model/all/train/loss=451, primary/cow-tus-dataset/train/accuracy=0.615, primary/cow-tus-dataset/train/roc_auc=0.575, primary/cow-tus-dataset/train/precision=0.714, primary/cow-tus-dataset/train/recall=0.625, primary/cow-tus-dataset/train/f1=0.667, primary/cow-tus-dataset/train/average=0.639, model/all/train/micro_average=0.639, model/all/train/macro_average=0.639, model/all/train/lr=0.01]
+Epoch 0::  23%|██▎       | 13/56 [00:39<01:18,  1.83s/it, primary/cow-tus-dataset/train/loss=451, model/all/train/loss=451, primary/cow-tus-dataset/train/accuracy=0.615, primary/cow-tus-dataset/train/roc_auc=0.575, primary/cow-tus-dataset/train/precision=0.714, primary/cow-tus-dataset/train/recall=0.625, primary/cow-tus-dataset/train/f1=0.667, primary/cow-tus-dataset/train/average=0.639, model/all/train/micro_average=0.639, model/all/train/macro_average=0.639, model/all/train/lr=0.01]torch.Size([1, 318, 224, 224, 1])
+torch.Size([1, 1024, 40, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+
+Epoch 0::  23%|██▎       | 13/56 [00:40<01:18,  1.83s/it, primary/cow-tus-dataset/train/loss=419, model/all/train/loss=419, primary/cow-tus-dataset/train/accuracy=0.643, primary/cow-tus-dataset/train/roc_auc=0.6, primary/cow-tus-dataset/train/precision=0.75, primary/cow-tus-dataset/train/recall=0.667, primary/cow-tus-dataset/train/f1=0.706, primary/cow-tus-dataset/train/average=0.673, model/all/train/micro_average=0.673, model/all/train/macro_average=0.673, model/all/train/lr=0.01]   
+Epoch 0::  25%|██▌       | 14/56 [00:40<01:08,  1.62s/it, primary/cow-tus-dataset/train/loss=419, model/all/train/loss=419, primary/cow-tus-dataset/train/accuracy=0.643, primary/cow-tus-dataset/train/roc_auc=0.6, primary/cow-tus-dataset/train/precision=0.75, primary/cow-tus-dataset/train/recall=0.667, primary/cow-tus-dataset/train/f1=0.706, primary/cow-tus-dataset/train/average=0.673, model/all/train/micro_average=0.673, model/all/train/macro_average=0.673, model/all/train/lr=0.01]torch.Size([1, 308, 224, 224, 1])
+torch.Size([1, 1024, 39, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+
+Epoch 0::  25%|██▌       | 14/56 [00:41<01:08,  1.62s/it, primary/cow-tus-dataset/train/loss=434, model/all/train/loss=434, primary/cow-tus-dataset/train/accuracy=0.6, primary/cow-tus-dataset/train/roc_auc=0.556, primary/cow-tus-dataset/train/precision=0.667, primary/cow-tus-dataset/train/recall=0.667, primary/cow-tus-dataset/train/f1=0.667, primary/cow-tus-dataset/train/average=0.631, model/all/train/micro_average=0.631, model/all/train/macro_average=0.631, model/all/train/lr=0.01]
+Epoch 0::  27%|██▋       | 15/56 [00:41<01:00,  1.48s/it, primary/cow-tus-dataset/train/loss=434, model/all/train/loss=434, primary/cow-tus-dataset/train/accuracy=0.6, primary/cow-tus-dataset/train/roc_auc=0.556, primary/cow-tus-dataset/train/precision=0.667, primary/cow-tus-dataset/train/recall=0.667, primary/cow-tus-dataset/train/f1=0.667, primary/cow-tus-dataset/train/average=0.631, model/all/train/micro_average=0.631, model/all/train/macro_average=0.631, model/all/train/lr=0.01]torch.Size([1, 323, 224, 224, 1])
+torch.Size([1, 1024, 41, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+
+Epoch 0::  27%|██▋       | 15/56 [00:43<01:00,  1.48s/it, primary/cow-tus-dataset/train/loss=407, model/all/train/loss=407, primary/cow-tus-dataset/train/accuracy=0.625, primary/cow-tus-dataset/train/roc_auc=0.595, primary/cow-tus-dataset/train/precision=0.667, primary/cow-tus-dataset/train/recall=0.667, primary/cow-tus-dataset/train/f1=0.667, primary/cow-tus-dataset/train/average=0.644, model/all/train/micro_average=0.644, model/all/train/macro_average=0.644, model/all/train/lr=0.01]
+Epoch 0::  29%|██▊       | 16/56 [00:43<00:55,  1.38s/it, primary/cow-tus-dataset/train/loss=407, model/all/train/loss=407, primary/cow-tus-dataset/train/accuracy=0.625, primary/cow-tus-dataset/train/roc_auc=0.595, primary/cow-tus-dataset/train/precision=0.667, primary/cow-tus-dataset/train/recall=0.667, primary/cow-tus-dataset/train/f1=0.667, primary/cow-tus-dataset/train/average=0.644, model/all/train/micro_average=0.644, model/all/train/macro_average=0.644, model/all/train/lr=0.01]torch.Size([1, 320, 224, 224, 1])
+torch.Size([1, 1024, 40, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+
+Epoch 0::  29%|██▊       | 16/56 [00:51<00:55,  1.38s/it, primary/cow-tus-dataset/train/loss=442, model/all/train/loss=442, primary/cow-tus-dataset/train/accuracy=0.588, primary/cow-tus-dataset/train/roc_auc=0.557, primary/cow-tus-dataset/train/precision=0.667, primary/cow-tus-dataset/train/recall=0.6, primary/cow-tus-dataset/train/f1=0.632, primary/cow-tus-dataset/train/average=0.609, model/all/train/micro_average=0.609, model/all/train/macro_average=0.609, model/all/train/lr=0.01]  
+Epoch 0::  30%|███       | 17/56 [00:51<02:13,  3.42s/it, primary/cow-tus-dataset/train/loss=442, model/all/train/loss=442, primary/cow-tus-dataset/train/accuracy=0.588, primary/cow-tus-dataset/train/roc_auc=0.557, primary/cow-tus-dataset/train/precision=0.667, primary/cow-tus-dataset/train/recall=0.6, primary/cow-tus-dataset/train/f1=0.632, primary/cow-tus-dataset/train/average=0.609, model/all/train/micro_average=0.609, model/all/train/macro_average=0.609, model/all/train/lr=0.01]torch.Size([1, 280, 224, 224, 1])
+torch.Size([1, 1024, 35, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+
+Epoch 0::  30%|███       | 17/56 [00:52<02:13,  3.42s/it, primary/cow-tus-dataset/train/loss=427, model/all/train/loss=427, primary/cow-tus-dataset/train/accuracy=0.556, primary/cow-tus-dataset/train/roc_auc=0.526, primary/cow-tus-dataset/train/precision=0.667, primary/cow-tus-dataset/train/recall=0.545, primary/cow-tus-dataset/train/f1=0.6, primary/cow-tus-dataset/train/average=0.579, model/all/train/micro_average=0.579, model/all/train/macro_average=0.579, model/all/train/lr=0.01]
+Epoch 0::  32%|███▏      | 18/56 [00:52<01:42,  2.70s/it, primary/cow-tus-dataset/train/loss=427, model/all/train/loss=427, primary/cow-tus-dataset/train/accuracy=0.556, primary/cow-tus-dataset/train/roc_auc=0.526, primary/cow-tus-dataset/train/precision=0.667, primary/cow-tus-dataset/train/recall=0.545, primary/cow-tus-dataset/train/f1=0.6, primary/cow-tus-dataset/train/average=0.579, model/all/train/micro_average=0.579, model/all/train/macro_average=0.579, model/all/train/lr=0.01]torch.Size([1, 348, 224, 224, 1])
+torch.Size([1, 1024, 44, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+
+Epoch 0::  32%|███▏      | 18/56 [00:53<01:42,  2.70s/it, primary/cow-tus-dataset/train/loss=406, model/all/train/loss=406, primary/cow-tus-dataset/train/accuracy=0.526, primary/cow-tus-dataset/train/roc_auc=0.509, primary/cow-tus-dataset/train/precision=0.667, primary/cow-tus-dataset/train/recall=0.5, primary/cow-tus-dataset/train/f1=0.571, primary/cow-tus-dataset/train/average=0.555, model/all/train/micro_average=0.555, model/all/train/macro_average=0.555, model/all/train/lr=0.01]
+Epoch 0::  34%|███▍      | 19/56 [00:53<01:24,  2.27s/it, primary/cow-tus-dataset/train/loss=406, model/all/train/loss=406, primary/cow-tus-dataset/train/accuracy=0.526, primary/cow-tus-dataset/train/roc_auc=0.509, primary/cow-tus-dataset/train/precision=0.667, primary/cow-tus-dataset/train/recall=0.5, primary/cow-tus-dataset/train/f1=0.571, primary/cow-tus-dataset/train/average=0.555, model/all/train/micro_average=0.555, model/all/train/macro_average=0.555, model/all/train/lr=0.01]torch.Size([1, 301, 224, 224, 1])
+torch.Size([1, 1024, 38, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+
+Epoch 0::  34%|███▍      | 19/56 [00:54<01:24,  2.27s/it, primary/cow-tus-dataset/train/loss=387, model/all/train/loss=387, primary/cow-tus-dataset/train/accuracy=0.5, primary/cow-tus-dataset/train/roc_auc=0.503, primary/cow-tus-dataset/train/precision=0.667, primary/cow-tus-dataset/train/recall=0.462, primary/cow-tus-dataset/train/f1=0.545, primary/cow-tus-dataset/train/average=0.535, model/all/train/micro_average=0.535, model/all/train/macro_average=0.535, model/all/train/lr=0.01]
+Epoch 0::  36%|███▌      | 20/56 [00:54<01:09,  1.92s/it, primary/cow-tus-dataset/train/loss=387, model/all/train/loss=387, primary/cow-tus-dataset/train/accuracy=0.5, primary/cow-tus-dataset/train/roc_auc=0.503, primary/cow-tus-dataset/train/precision=0.667, primary/cow-tus-dataset/train/recall=0.462, primary/cow-tus-dataset/train/f1=0.545, primary/cow-tus-dataset/train/average=0.535, model/all/train/micro_average=0.535, model/all/train/macro_average=0.535, model/all/train/lr=0.01]torch.Size([1, 320, 224, 224, 1])
+torch.Size([1, 1024, 40, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+
+Epoch 0::  36%|███▌      | 20/56 [00:55<01:09,  1.92s/it, primary/cow-tus-dataset/train/loss=369, model/all/train/loss=369, primary/cow-tus-dataset/train/accuracy=0.476, primary/cow-tus-dataset/train/roc_auc=0.497, primary/cow-tus-dataset/train/precision=0.667, primary/cow-tus-dataset/train/recall=0.429, primary/cow-tus-dataset/train/f1=0.522, primary/cow-tus-dataset/train/average=0.518, model/all/train/micro_average=0.518, model/all/train/macro_average=0.518, model/all/train/lr=0.01]
+Epoch 0::  38%|███▊      | 21/56 [00:55<00:59,  1.70s/it, primary/cow-tus-dataset/train/loss=369, model/all/train/loss=369, primary/cow-tus-dataset/train/accuracy=0.476, primary/cow-tus-dataset/train/roc_auc=0.497, primary/cow-tus-dataset/train/precision=0.667, primary/cow-tus-dataset/train/recall=0.429, primary/cow-tus-dataset/train/f1=0.522, primary/cow-tus-dataset/train/average=0.518, model/all/train/micro_average=0.518, model/all/train/macro_average=0.518, model/all/train/lr=0.01]torch.Size([1, 320, 224, 224, 1])
+torch.Size([1, 1024, 40, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+
+Epoch 0::  38%|███▊      | 21/56 [00:57<00:59,  1.70s/it, primary/cow-tus-dataset/train/loss=352, model/all/train/loss=352, primary/cow-tus-dataset/train/accuracy=0.455, primary/cow-tus-dataset/train/roc_auc=0.489, primary/cow-tus-dataset/train/precision=0.6, primary/cow-tus-dataset/train/recall=0.429, primary/cow-tus-dataset/train/f1=0.5, primary/cow-tus-dataset/train/average=0.494, model/all/train/micro_average=0.494, model/all/train/macro_average=0.494, model/all/train/lr=0.01]    
+Epoch 0::  39%|███▉      | 22/56 [00:57<00:52,  1.54s/it, primary/cow-tus-dataset/train/loss=352, model/all/train/loss=352, primary/cow-tus-dataset/train/accuracy=0.455, primary/cow-tus-dataset/train/roc_auc=0.489, primary/cow-tus-dataset/train/precision=0.6, primary/cow-tus-dataset/train/recall=0.429, primary/cow-tus-dataset/train/f1=0.5, primary/cow-tus-dataset/train/average=0.494, model/all/train/micro_average=0.494, model/all/train/macro_average=0.494, model/all/train/lr=0.01]torch.Size([1, 320, 224, 224, 1])
+torch.Size([1, 1024, 40, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+
+Epoch 0::  39%|███▉      | 22/56 [00:58<00:52,  1.54s/it, primary/cow-tus-dataset/train/loss=337, model/all/train/loss=337, primary/cow-tus-dataset/train/accuracy=0.435, primary/cow-tus-dataset/train/roc_auc=0.482, primary/cow-tus-dataset/train/precision=0.545, primary/cow-tus-dataset/train/recall=0.429, primary/cow-tus-dataset/train/f1=0.48, primary/cow-tus-dataset/train/average=0.474, model/all/train/micro_average=0.474, model/all/train/macro_average=0.474, model/all/train/lr=0.01]
+Epoch 0::  41%|████      | 23/56 [00:58<00:47,  1.43s/it, primary/cow-tus-dataset/train/loss=337, model/all/train/loss=337, primary/cow-tus-dataset/train/accuracy=0.435, primary/cow-tus-dataset/train/roc_auc=0.482, primary/cow-tus-dataset/train/precision=0.545, primary/cow-tus-dataset/train/recall=0.429, primary/cow-tus-dataset/train/f1=0.48, primary/cow-tus-dataset/train/average=0.474, model/all/train/micro_average=0.474, model/all/train/macro_average=0.474, model/all/train/lr=0.01]torch.Size([1, 319, 224, 224, 1])
+torch.Size([1, 1024, 40, 7, 7])
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+/pytorch/aten/src/ATen/native/IndexingUtils.h:20: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+
+Epoch 0::  41%|████      | 23/56 [00:59<00:47,  1.43s/it, primary/cow-tus-dataset/train/loss=323, model/all/train/loss=323, primary/cow-tus-dataset/train/accuracy=0.458, primary/cow-tus-dataset/train/roc_auc=0.494, primary/cow-tus-dataset/train/precision=0.583, primary/cow-tus-dataset/train/recall=0.467, primary/cow-tus-dataset/train/f1=0.519, primary/cow-tus-dataset/train/average=0.504, model/all/train/micro_average=0.504, model/all/train/macro_average=0.504, model/all/train/lr=0.01]
+Epoch 0::  43%|████▎     | 24/56 [00:59<00:43,  1.35s/it, primary/cow-tus-dataset/train/loss=323, model/all/train/loss=323, primary/cow-tus-dataset/train/accuracy=0.458, primary/cow-tus-dataset/train/roc_auc=0.494, primary/cow-tus-dataset/train/precision=0.583, primary/cow-tus-dataset/train/recall=0.467, primary/cow-tus-dataset/train/f1=0.519, primary/cow-tus-dataset/train/average=0.504, model/all/train/micro_average=0.504, model/all/train/macro_average=0.504, model/all/train/lr=0.01]
