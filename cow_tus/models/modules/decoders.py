@@ -32,7 +32,6 @@ class AttDecoder(nn.Module):
                                         out_features=encoding_size)
         self.value_projection = nn.Linear(in_features=encoding_size,
                                           out_features=self.head_size * num_heads)
-        self.dropout_p = dropout_p
 
     def aggregate(self, encoding):
         """

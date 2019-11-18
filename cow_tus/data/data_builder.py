@@ -42,7 +42,7 @@ def config():
     }
     loop_types = ['l5', 'l6', 'l7', 'lv', 'r4', 'r5', 'r6', 'rv']
 
-    hypothesis_conditions = ['single-instance-learning', 'temporal-downsample']
+    hypothesis_conditions = ['single-instance-learning', 'spatial-downsample']
     group_dir = path.join('data', *hypothesis_conditions)
 
 

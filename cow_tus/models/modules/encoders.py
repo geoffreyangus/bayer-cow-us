@@ -32,7 +32,6 @@ class I3DEncoder(I3D):
         return:
             output (torch.tensor)   shape (batch_size, 1024, ~length/8, 7, 7)
         """
-        # print(input_tensor.shape)
         input_tensor = input_tensor.permute((0, 4, 1, 2, 3))
         out = self.conv3d_1a_7x7(input_tensor)
         out = self.maxPool3d_2a_3x3(out)

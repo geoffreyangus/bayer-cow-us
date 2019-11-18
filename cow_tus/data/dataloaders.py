@@ -226,22 +226,15 @@ class ExamDataLoader(DataLoader):
                              num_workers=num_workers, sampler=sampler, pin_memory=pin_memory,
                              collate_fn=collate)
 
-    def _get_weights(self, dataset, weight_task):
-        """
-        """
-        for y in dataset.get_all_y(tasks=[weight_task], hard=True):
-            y_class = y[weight_task]
-            classes.append(y_class)
+def get_sample_weights(dataset, weight_task, class_probs):
+    """
+    """
+    classes = dataset.Y_dict[weight_task]
+    classes = torch.LongTensor(classes)
+    counts = torch.bincount(classes)
 
-        classes = torch.stack(classes)
-        if classes.shape[-1] > 1:
-            classes = soft_to_hard(classes, break_ties="random").long()
-
-        classes = torch.LongTensor(classes)
-        counts = torch.bincount(classes)
-
-        weights = torch.zeros_like(classes, dtype=torch.float)
-        for example_idx, class_idx in enumerate(classes):
-            class_prob = class_probs[class_idx] / float(counts[class_idx])
-            weights[example_idx] = class_prob
-        return weights
+    weights = torch.zeros_like(classes, dtype=torch.float)
+    for example_idx, class_idx in enumerate(classes):
+        class_prob = class_probs[class_idx] / float(counts[class_idx])
+        weights[example_idx] = class_prob
+    return weights
