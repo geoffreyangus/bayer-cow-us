@@ -3,6 +3,7 @@
 import os
 import os.path as path
 import re
+import uuid
 
 import exdir
 import numpy as np
@@ -13,8 +14,8 @@ from sacred import Experiment
 from sacred.observers import FileStorageObserver
 import yaml
 
-from cow_tus.data.transforms.preprocessing import builder_ingredient
-import cow_tus.data.transforms.preprocessing as preprocess
+from cow_tus.data.transforms import builder_ingredient
+import cow_tus.data.transforms as preprocess
 import cow_tus.util.util as util
 
 EXPERIMENT_NAME = 'builder'
@@ -25,9 +26,9 @@ ex = Experiment(EXPERIMENT_NAME, ingredients=[builder_ingredient])
 def config():
     """
     """
-    raw_dir = "/data/cow-tus-data/raw"
-    raw_labels_filename = "labels_instance_level.csv"
-    out_dir = "/data/cow-tus-data/processed"
+    raw_dir = "/data4/cow-tus-data/raw"
+    raw_labels_filename = "labels_instance_full.csv"
+    out_dir = "/data4/cow-tus-data/processed"
     # out_dir = 'sample'
 
     loop_id_substitutions = {
@@ -38,11 +39,12 @@ def config():
         '44887RV': '4487RV',
         '44787L5': '4487L5',
         '487L6':   '4487L6',
-        '487L77':  '4487L7'
+        '487L77':  '4487L7',
+        '4732R66': '4732R6'
     }
     loop_types = ['l5', 'l6', 'l7', 'lv', 'r4', 'r5', 'r6', 'rv']
 
-    hypothesis_conditions = ['single-instance-learning', 'spatial-downsample']
+    hypothesis_conditions = ['single-instance-learning', 'temporal-downsample']
     group_dir = path.join('data', *hypothesis_conditions)
 
 
@@ -201,6 +203,8 @@ class DataBuilder:
                     loop_dataset.attrs.update({
                         'raw.loop_path': raw_loop_path,
                         'raw.loop_shape': raw_loop_shape,
+                        'exdir.uuid': uuid.uuid4(),
+                        'exdir.exam_id_loop_id': f'{exam_id}_{loop_id}',
                         'exdir.loop_id': loop_id,
                         'exdir.loop_type': loop_type if loop_type in loop_types else 'malformed',
                         'exdir.loop_path': str(loop_dataset.directory),

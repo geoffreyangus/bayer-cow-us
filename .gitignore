@@ -127,3 +127,4 @@ dmypy.json
 .exdir
 .emmental
 *.pth
+experiments

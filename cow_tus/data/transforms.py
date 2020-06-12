@@ -24,6 +24,24 @@ training_ingredient = Ingredient('transforms')
 
 @training_ingredient.config
 def training_config():
+    """
+    Common transform function definitions and compose configurations
+    """
+    temporal_downsample_transform_fn = {"fn": "random_offset", "args": {"offset": 3, "offset_range": [0,1]}}
+    spatial_downsample_transform_fn = {'fn': 'resize_clip', 'args': {'size': (120, 80)}}
+    rls_transform_fn = {
+        'fn': 'extract_instance',
+        "args": {
+            "instance_only": True,
+            "p_add_diff_class": 0.0,
+            "p_add_same_class": 0.0,
+            "splits": [
+                "train",
+                "valid"
+            ]
+        }
+    }
+
     preprocess_fns = [
         {
             'fn': 'resize_clip',
@@ -34,7 +52,7 @@ def training_config():
         {
             'fn': 'normalize',
             'args': {}
-        },
+        }
     ]
 
     augmentation_fns = [
@@ -42,27 +60,27 @@ def training_config():
         #     'fn': 'shuffle',
         #     'args': {}
         # },
+#         {
+#             'fn': 'extract_instance',
+#             'args': {
+#                 'p_add_same_class': 0.0,
+#                 'p_add_diff_class': 0.0,
+#                 'instance_only': True,
+#                 'splits': ['train', 'valid']
+#             }
+#         },
         # {
-        #     'fn': 'extract_instance',
+        #     'fn': 'random_flip',
         #     'args': {
-        #         'p_add_same_class': 0.0,
-        #         'p_add_diff_class': 0.0,
-        #         'instance_only': True,
-        #         'splits': ['train', 'valid']
+        #         'axis': 0
         #     }
         # },
-        {
-            'fn': 'random_flip',
-            'args': {
-                'axis': 0
-            }
-        },
-        {
-            'fn': 'random_flip',
-            'args': {
-                'axis': 1
-            }
-        },
+        # {
+        #     'fn': 'random_flip',
+        #     'args': {
+        #         'axis': 1
+        #     }
+        # },
         {
             'fn': 'random_flip',
             'args': {
@@ -72,7 +90,8 @@ def training_config():
         {
             'fn': 'jitter',
             'args': {
-                'brightness': [0.5]
+                'brightness': [0.5],
+                'contrast': [0.5],
             }
         }
     ]

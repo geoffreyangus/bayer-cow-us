@@ -22,9 +22,9 @@ ex = Experiment(EXPERIMENT_NAME)
 def config():
     """
     """
-    data_dir = 'data/single-instance-learning/temporal-downsample'
+    data_dir = 'data/Q3/all'
 
-    hypothesis_conditions = ['by-animal-number', 'no-holdout-test']
+    hypothesis_conditions = ['Q3', 'no-holdout-test']
     group_dir = path.join('data', 'split', *hypothesis_conditions)
 
     strata_key = 'raw.animal_number'

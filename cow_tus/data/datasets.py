@@ -73,8 +73,8 @@ class GlobalDataset(EmmentalDataset):
     def __getitem__(self, idx):
         """
         """
-        x_dict = {i: inputs[idx] for i, inputs in self.X_dict.items() if i != 'exam'}
-        x_dict['exam'] = self.get_x(self.exam_ids[idx])
+        x_dict = {i: inputs[idx] for i, inputs in self.X_dict.items() if i != 'clip'}
+        x_dict['clip'] = self.get_x(self.exam_ids[idx])
         y_dict = {t: labels[idx] for t, labels in self.Y_dict.items()}
         return x_dict, y_dict
 
@@ -164,7 +164,8 @@ class InstanceDataset(EmmentalDataset):
         loop_idxs = []
         for loop_idx in self.loop_idxs:
             row = self.split_df.iloc[loop_idx]
-            if not np.isnan(row['label.instance_multiclass_label']):
+            loop_type = row['exdir.loop_type']
+            if f'label.{loop_type}' in row.keys() and not np.isnan(row[f'label.{loop_type}']):
                 loop_idxs.append(loop_idx)
         logger.info(f'using {len(loop_idxs)} of {len(self.loop_idxs)} loop_idxs')
         self.loop_idxs = loop_idxs
@@ -191,8 +192,8 @@ class InstanceDataset(EmmentalDataset):
     def __getitem__(self, idx):
         """
         """
-        x_dict = {i: inputs[idx] for i, inputs in self.X_dict.items() if i != 'loop'}
-        x_dict['loop'] = self.get_x(self.loop_idxs[idx])
+        x_dict = {i: inputs[idx] for i, inputs in self.X_dict.items() if i != 'clip'}
+        x_dict['clip'] = self.get_x(self.loop_idxs[idx])
         y_dict = {t: labels[idx] for t, labels in self.Y_dict.items()}
         return x_dict, y_dict
 
@@ -228,5 +229,5 @@ class InstanceDataset(EmmentalDataset):
             soft_target = np.array(row_target)
             y[key] = np.argmax(soft_target)
         y['2normal_binary'] = 0 if y['primary_multiclass'] <= 1 else 1
-        print(y, joint_id)
+        # print(y, joint_id)
         return y
