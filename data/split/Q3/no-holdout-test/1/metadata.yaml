@@ -1,0 +1,11 @@
+meta.data_dir: data/Q3/all
+meta.split_to_count: {test: 0, train: 56, valid: 30}
+meta.strata_key: raw.animal_number
+split.label_counts: {0: 34, 1: 21, 2: 17, 3: 14}
+split.label_split_quotas:
+  test: {0: 0, 1: 0, 2: 0, 3: 0}
+  train: {0: 22, 1: 13, 2: 11, 3: 9}
+  valid: {0: 11, 1: 7, 2: 5, 3: 4}
+split.label_to_freq:
+  train: {0: 23, 1: 12, 2: 11, 3: 10}
+  valid: {0: 11, 1: 9, 2: 6, 3: 4}

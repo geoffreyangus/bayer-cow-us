@@ -1,0 +1,22 @@
+config.hypothesis_conditions: [single-instance-learning, temporal-downsample]
+config.out_dir: /data4/cow-tus-data/processed
+config.raw_dir: /data4/cow-tus-data/raw
+meta.exdir_directory: /data4/cow-tus-data/processed.exdir/single-instance-learning/temporal-downsample
+meta.total.global.binary.num_0: 34
+meta.total.global.binary.num_1: 52
+meta.total.global.multiclass.num_0: 34
+meta.total.global.multiclass.num_1: 21
+meta.total.global.multiclass.num_2: 17
+meta.total.global.multiclass.num_3: 14
+meta.total.instance.binary.num_0: 483
+meta.total.instance.binary.num_1: 159
+meta.total.instance.multiclass.num_0: 483
+meta.total.instance.multiclass.num_1: 94
+meta.total.instance.multiclass.num_2: 30
+meta.total.instance.multiclass.num_3: 35
+meta.total.num_exams: 86
+meta.total.num_exams_skipped: 3
+meta.total.num_files_skipped: 0
+meta.total.num_loops: 673
+meta.total.num_loops_inferred_label: 0
+meta.total.num_loops_labeled: 660

@@ -1,0 +1,11 @@
+INFO - splitter - Running command 'main'
+INFO - splitter - Started run with ID "4"
+WARNING - _shuffle - exam CH4737 only has one instance
+WARNING - _shuffle - exam CH4838 only has one instance
+INFO - _assign - verifying candidate with label freqs: 
+{'train': {0: 24, 1: 17, 2: 8, 3: 7}, 'valid': {0: 10, 1: 4, 2: 9, 3: 7}, 'test': {0: 0, 1: 0, 2: 0, 3: 0}}
+INFO - _assign - verifying candidate with label freqs: 
+{'train': {0: 23, 1: 14, 2: 10, 3: 9}, 'valid': {0: 11, 1: 7, 2: 7, 3: 5}, 'test': {0: 0, 1: 0, 2: 0, 3: 0}}
+INFO - _assign - verification success with quota: 
+{'train': {0: 22, 1: 13, 2: 11, 3: 9}, 'valid': {0: 11, 1: 7, 2: 5, 3: 4}, 'test': {0: 0, 1: 0, 2: 0, 3: 0}}
+INFO - splitter - Completed after 0:00:00

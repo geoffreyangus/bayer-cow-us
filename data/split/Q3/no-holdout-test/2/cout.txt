@@ -1,0 +1,41 @@
+INFO - splitter - Running command 'main'
+INFO - splitter - Started run with ID "2"
+WARNING - _shuffle - exam CH4737 only has one instance
+WARNING - _shuffle - exam CH4838 only has one instance
+INFO - _assign - verifying candidate with label freqs: 
+{'train': {0: 18, 1: 15, 2: 15, 3: 8}, 'valid': {0: 16, 1: 6, 2: 2, 3: 6}, 'test': {0: 0, 1: 0, 2: 0, 3: 0}}
+INFO - _assign - verifying candidate with label freqs: 
+{'train': {0: 24, 1: 16, 2: 10, 3: 6}, 'valid': {0: 10, 1: 5, 2: 7, 3: 8}, 'test': {0: 0, 1: 0, 2: 0, 3: 0}}
+INFO - _assign - verifying candidate with label freqs: 
+{'train': {0: 24, 1: 14, 2: 12, 3: 6}, 'valid': {0: 10, 1: 7, 2: 5, 3: 8}, 'test': {0: 0, 1: 0, 2: 0, 3: 0}}
+INFO - _assign - verifying candidate with label freqs: 
+{'train': {0: 27, 1: 17, 2: 9, 3: 3}, 'valid': {0: 7, 1: 4, 2: 8, 3: 11}, 'test': {0: 0, 1: 0, 2: 0, 3: 0}}
+INFO - _assign - verifying candidate with label freqs: 
+{'train': {0: 24, 1: 11, 2: 12, 3: 9}, 'valid': {0: 10, 1: 10, 2: 5, 3: 5}, 'test': {0: 0, 1: 0, 2: 0, 3: 0}}
+INFO - _assign - verifying candidate with label freqs: 
+{'train': {0: 25, 1: 11, 2: 13, 3: 7}, 'valid': {0: 9, 1: 10, 2: 4, 3: 7}, 'test': {0: 0, 1: 0, 2: 0, 3: 0}}
+INFO - _assign - verifying candidate with label freqs: 
+{'train': {0: 20, 1: 11, 2: 12, 3: 13}, 'valid': {0: 14, 1: 10, 2: 5, 3: 1}, 'test': {0: 0, 1: 0, 2: 0, 3: 0}}
+INFO - _assign - verifying candidate with label freqs: 
+{'train': {0: 24, 1: 15, 2: 12, 3: 5}, 'valid': {0: 10, 1: 6, 2: 5, 3: 9}, 'test': {0: 0, 1: 0, 2: 0, 3: 0}}
+INFO - _assign - verifying candidate with label freqs: 
+{'train': {0: 21, 1: 13, 2: 13, 3: 9}, 'valid': {0: 13, 1: 8, 2: 4, 3: 5}, 'test': {0: 0, 1: 0, 2: 0, 3: 0}}
+INFO - _assign - verifying candidate with label freqs: 
+{'train': {0: 21, 1: 11, 2: 11, 3: 13}, 'valid': {0: 13, 1: 10, 2: 6, 3: 1}, 'test': {0: 0, 1: 0, 2: 0, 3: 0}}
+INFO - _assign - verifying candidate with label freqs: 
+{'train': {0: 23, 1: 13, 2: 8, 3: 12}, 'valid': {0: 11, 1: 8, 2: 9, 3: 2}, 'test': {0: 0, 1: 0, 2: 0, 3: 0}}
+INFO - _assign - verifying candidate with label freqs: 
+{'train': {0: 21, 1: 16, 2: 11, 3: 8}, 'valid': {0: 13, 1: 5, 2: 6, 3: 6}, 'test': {0: 0, 1: 0, 2: 0, 3: 0}}
+INFO - _assign - verifying candidate with label freqs: 
+{'train': {0: 17, 1: 17, 2: 13, 3: 9}, 'valid': {0: 17, 1: 4, 2: 4, 3: 5}, 'test': {0: 0, 1: 0, 2: 0, 3: 0}}
+INFO - _assign - verifying candidate with label freqs: 
+{'train': {0: 24, 1: 15, 2: 12, 3: 5}, 'valid': {0: 10, 1: 6, 2: 5, 3: 9}, 'test': {0: 0, 1: 0, 2: 0, 3: 0}}
+INFO - _assign - verifying candidate with label freqs: 
+{'train': {0: 21, 1: 16, 2: 9, 3: 10}, 'valid': {0: 13, 1: 5, 2: 8, 3: 4}, 'test': {0: 0, 1: 0, 2: 0, 3: 0}}
+INFO - _assign - verifying candidate with label freqs: 
+{'train': {0: 19, 1: 16, 2: 13, 3: 8}, 'valid': {0: 15, 1: 5, 2: 4, 3: 6}, 'test': {0: 0, 1: 0, 2: 0, 3: 0}}
+INFO - _assign - verifying candidate with label freqs: 
+{'train': {0: 23, 1: 14, 2: 9, 3: 10}, 'valid': {0: 11, 1: 7, 2: 8, 3: 4}, 'test': {0: 0, 1: 0, 2: 0, 3: 0}}
+INFO - _assign - verification success with quota: 
+{'train': {0: 22, 1: 13, 2: 11, 3: 9}, 'valid': {0: 11, 1: 7, 2: 5, 3: 4}, 'test': {0: 0, 1: 0, 2: 0, 3: 0}}
+INFO - splitter - Completed after 0:00:00

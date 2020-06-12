@@ -1,0 +1,101 @@
+{
+  "artifacts": [
+    "train.csv",
+    "valid.csv",
+    "metadata.yaml"
+  ],
+  "command": "main",
+  "experiment": {
+    "base_dir": "/home/gangus/cow-tus/cow_tus/data",
+    "dependencies": [
+      "numpy==1.17.4",
+      "pandas==0.25.3",
+      "PyYAML==4.2b4",
+      "sacred==0.8.0"
+    ],
+    "mainfile": "data_splitter.py",
+    "name": "splitter",
+    "repositories": [
+      {
+        "commit": "0d9f86fd9a0f5de3729a9550fb8b1cbca08a63cb",
+        "dirty": true,
+        "url": "https://code.stanford.edu/lungrenlab/cow-tus.git/"
+      }
+    ],
+    "sources": [
+      [
+        "data_splitter.py",
+        "_sources/data_splitter_67af079a5c22f99d036cb879ad208ac6.py"
+      ]
+    ]
+  },
+  "heartbeat": "2019-12-13T04:42:06.826293",
+  "host": {
+    "ENV": {},
+    "cpu": "Intel(R) Xeon(R) CPU E5-2620 v4 @ 2.10GHz",
+    "gpus": {
+      "driver_version": "430.34",
+      "gpus": [
+        {
+          "model": "TITAN V",
+          "persistence_mode": false,
+          "total_memory": 12062
+        },
+        {
+          "model": "TITAN V",
+          "persistence_mode": false,
+          "total_memory": 12066
+        },
+        {
+          "model": "TITAN V",
+          "persistence_mode": false,
+          "total_memory": 12066
+        },
+        {
+          "model": "TITAN V",
+          "persistence_mode": false,
+          "total_memory": 12066
+        }
+      ]
+    },
+    "hostname": "u07082019000",
+    "os": [
+      "Linux",
+      "Linux-4.15.0-55-generic-x86_64-with-Ubuntu-18.04-bionic"
+    ],
+    "python_version": "3.7.4"
+  },
+  "meta": {
+    "command": "main",
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserve": false,
+      "COMMAND": null,
+      "UPDATE": [],
+      "help": false,
+      "with": false
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2019-12-13T04:42:06.556297",
+  "status": "COMPLETED",
+  "stop_time": "2019-12-13T04:42:06.824354"
+}
