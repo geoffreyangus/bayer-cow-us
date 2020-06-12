@@ -1,0 +1,123 @@
+{
+  "artifacts": [],
+  "command": "main",
+  "experiment": {
+    "base_dir": "/home/gangus/cow-tus/cow_tus/experiment",
+    "dependencies": [
+      "emmental==0.0.4",
+      "numpy==1.17.4",
+      "Pillow==6.2.1",
+      "sacred==0.8.0",
+      "scipy==1.3.2",
+      "torch==1.3.1",
+      "torchvision==0.4.2"
+    ],
+    "mainfile": "train_emmental.py",
+    "name": "trainer",
+    "repositories": [
+      {
+        "commit": "0d9f86fd9a0f5de3729a9550fb8b1cbca08a63cb",
+        "dirty": true,
+        "url": "https://code.stanford.edu/lungrenlab/cow-tus.git/"
+      },
+      {
+        "commit": "0d9f86fd9a0f5de3729a9550fb8b1cbca08a63cb",
+        "dirty": true,
+        "url": "https://code.stanford.edu/lungrenlab/cow-tus.git/"
+      }
+    ],
+    "sources": [
+      [
+        "../data/transforms.py",
+        "_sources/transforms_72a19b5452a3c30c433bbf20ab9ec336.py"
+      ],
+      [
+        "train_emmental.py",
+        "_sources/train_emmental_1e13924c460154448026d09dac861e0a.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/home/gangus/cow-tus/.env/lib/python3.7/site-packages/sacred/config/captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"cow_tus/experiment/train_emmental.py\", line 307, in main\n    trainer = TrainingHarness()\n",
+    "  File \"cow_tus/experiment/train_emmental.py\", line 207, in __init__\n    self.model = self._init_model()\n",
+    "  File \"/home/gangus/cow-tus/.env/lib/python3.7/site-packages/sacred/config/captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"cow_tus/experiment/train_emmental.py\", line 288, in _init_model\n    for task_name in task_to_label_dict.keys()\n",
+    "  File \"cow_tus/experiment/train_emmental.py\", line 288, in <listcomp>\n    for task_name in task_to_label_dict.keys()\n",
+    "NameError: name 'task_to_cardinality' is not defined\n"
+  ],
+  "heartbeat": "2019-11-20T22:15:37.073674",
+  "host": {
+    "ENV": {},
+    "cpu": "Intel(R) Xeon(R) CPU E5-2620 v4 @ 2.10GHz",
+    "gpus": {
+      "driver_version": "430.34",
+      "gpus": [
+        {
+          "model": "TITAN V",
+          "persistence_mode": false,
+          "total_memory": 12062
+        },
+        {
+          "model": "TITAN V",
+          "persistence_mode": false,
+          "total_memory": 12066
+        },
+        {
+          "model": "TITAN V",
+          "persistence_mode": false,
+          "total_memory": 12066
+        },
+        {
+          "model": "TITAN V",
+          "persistence_mode": false,
+          "total_memory": 12066
+        }
+      ]
+    },
+    "hostname": "u07082019000",
+    "os": [
+      "Linux",
+      "Linux-4.15.0-55-generic-x86_64-with-Ubuntu-18.04-bionic"
+    ],
+    "python_version": "3.7.4"
+  },
+  "meta": {
+    "command": "main",
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserve": false,
+      "COMMAND": null,
+      "UPDATE": [
+        "instance_level=False",
+        "task_str=primary_multiclass",
+        "temporal_downsample=True"
+      ],
+      "help": false,
+      "with": true
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2019-11-20T22:15:36.368159",
+  "status": "FAILED",
+  "stop_time": "2019-11-20T22:15:37.075646"
+}

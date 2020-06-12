@@ -1,0 +1,117 @@
+[2019-11-18 10:40:18,188][INFO] emmental.meta:106 - Setting logging directory to: experiments/single-instance-learning/2normal_binary/mixed-supervision/_emmental_logs/2019_11_18/10_40_18/de616ada
+[2019-11-18 10:40:18,205][INFO] emmental.meta:60 - Loading Emmental default config from /home/gangus/cow-tus/.emmental/src/emmental/emmental-default-config.yaml.
+[2019-11-18 10:40:18,205][INFO] emmental.meta:160 - Updating Emmental config from user provided config.
+[2019-11-18 10:40:18,222][INFO] cow_tus.data.datasets:54 - using 56 exam_ids
+{'primary': 1, 'primary_multiclass': 1, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 2, '2normal_binary': 1}
+{'primary': 1, 'primary_multiclass': 1, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 2, '2normal_binary': 1}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 1, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 1, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 1, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 3, '2normal_binary': 1}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 3, '2normal_binary': 1}
+{'primary': 1, 'primary_multiclass': 1, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 3, '2normal_binary': 1}
+{'primary': 1, 'primary_multiclass': 1, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 2, '2normal_binary': 1}
+{'primary': 1, 'primary_multiclass': 3, '2normal_binary': 1}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 2, '2normal_binary': 1}
+{'primary': 1, 'primary_multiclass': 1, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 1, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 1, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 3, '2normal_binary': 1}
+{'primary': 1, 'primary_multiclass': 2, '2normal_binary': 1}
+{'primary': 1, 'primary_multiclass': 1, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 3, '2normal_binary': 1}
+{'primary': 1, 'primary_multiclass': 1, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 1, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 2, '2normal_binary': 1}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 2, '2normal_binary': 1}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 2, '2normal_binary': 1}
+{'primary': 1, 'primary_multiclass': 1, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 2, '2normal_binary': 1}
+{'primary': 1, 'primary_multiclass': 2, '2normal_binary': 1}
+{'primary': 1, 'primary_multiclass': 3, '2normal_binary': 1}
+{'primary': 1, 'primary_multiclass': 3, '2normal_binary': 1}
+{'primary': 1, 'primary_multiclass': 3, '2normal_binary': 1}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 3, '2normal_binary': 1}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 2, '2normal_binary': 1}
+[2019-11-18 10:40:18,413][INFO] emmental.data:52 - Auto generate uids for dataset cow-tus-dataset under _uids_.
+[2019-11-18 10:40:18,413][INFO] __main__._init_datasets:151 - Loaded train split.
+[2019-11-18 10:40:18,426][INFO] cow_tus.data.datasets:54 - using 30 exam_ids
+{'primary': 1, 'primary_multiclass': 1, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 2, '2normal_binary': 1}
+{'primary': 1, 'primary_multiclass': 1, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 2, '2normal_binary': 1}
+{'primary': 1, 'primary_multiclass': 1, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 2, '2normal_binary': 1}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 1, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 3, '2normal_binary': 1}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 3, '2normal_binary': 1}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 2, '2normal_binary': 1}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 1, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 3, '2normal_binary': 1}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 1, '2normal_binary': 0}
+{'primary': 1, 'primary_multiclass': 2, '2normal_binary': 1}
+{'primary': 1, 'primary_multiclass': 3, '2normal_binary': 1}
+{'primary': 1, 'primary_multiclass': 2, '2normal_binary': 1}
+{'primary': 1, 'primary_multiclass': 1, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+{'primary': 0, 'primary_multiclass': 0, '2normal_binary': 0}
+[2019-11-18 10:40:18,528][INFO] emmental.data:52 - Auto generate uids for dataset cow-tus-dataset under _uids_.
+[2019-11-18 10:40:18,528][INFO] __main__._init_datasets:151 - Loaded valid split.
+[2019-11-18 10:40:18,528][INFO] __main__._init_dataloaders:180 - Built dataloader for train set.
+[2019-11-18 10:40:18,528][INFO] __main__._init_dataloaders:180 - Built dataloader for valid set.
+[2019-11-18 10:40:18,657][INFO] root:244 - Loading I3D weights from i3d/model_flow.pth
+[2019-11-18 10:40:18,750][INFO] emmental.task:48 - Created task: 2normal_binary
+[2019-11-18 10:40:18,764][INFO] emmental.model:70 - Moving model to GPU (cuda:0).
+[2019-11-18 10:40:23,108][INFO] emmental.model:56 - Created emmental model cow-tus-model that contains task {'2normal_binary'}.
+[2019-11-18 10:40:23,108][INFO] emmental.model:70 - Moving model to GPU (cuda:0).
+[2019-11-18 10:40:23,110][INFO] emmental.logging.logging_manager:37 - Evaluating every 1 epoch.
+[2019-11-18 10:40:23,110][INFO] emmental.logging.logging_manager:47 - Checkpointing every 1 epoch.
+[2019-11-18 10:40:23,110][INFO] emmental.logging.checkpointer:51 - Save checkpoints at experiments/single-instance-learning/2normal_binary/mixed-supervision/_emmental_logs/2019_11_18/10_40_18/de616ada every 1 epoch
+[2019-11-18 10:40:23,111][INFO] emmental.logging.checkpointer:83 - No checkpoints saved before 0 epoch.
+[2019-11-18 10:40:23,112][INFO] emmental.learner:92 - Using optimizer Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.01
+    weight_decay: 0.0
+)
+[2019-11-18 10:40:23,113][INFO] emmental.learner:448 - Start learning...
+
+Epoch 0::   0%|          | 0/150 [00:00<?, ?it/s]

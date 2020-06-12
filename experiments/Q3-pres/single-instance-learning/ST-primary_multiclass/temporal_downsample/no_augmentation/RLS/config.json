@@ -1,0 +1,355 @@
+{
+  "__doc__": "\nConfiguration for training harness.\n",
+  "data_augmentation": false,
+  "dataloader_configs": {
+    "train": {
+      "batch_size": 1,
+      "num_workers": 8,
+      "shuffle": false
+    },
+    "valid": {
+      "batch_size": 1,
+      "num_workers": 8,
+      "shuffle": true
+    }
+  },
+  "dataset_args": {
+    "dataset_dir": "data/split/by-animal-number/hold-out-validation",
+    "labels_path": "data/labels/globals.csv"
+  },
+  "dataset_class": "GlobalDataset",
+  "decoder_args": {
+    "dropout_p": 0.0
+  },
+  "decoder_class": "AttDecoder",
+  "encoder_args": {
+    "modality": "gray",
+    "weights_path": "i3d/model_flow.pth"
+  },
+  "encoder_class": "I3DEncoder",
+  "exp_dir": "experiments/Q3-pres/single-instance-learning/ST-primary_multiclass/temporal_downsample/no_augmentation",
+  "hypothesis_conditions": [
+    "Q3-pres",
+    "single-instance-learning",
+    "ST-primary_multiclass",
+    "temporal_downsample",
+    "no_augmentation"
+  ],
+  "instance_level": false,
+  "learner_config": {
+    "lr_scheduler_config": {
+      "lr_scheduler": "step",
+      "step_config": {
+        "gamma": 0.5,
+        "step_size": 6
+      },
+      "warmup_steps": null,
+      "warmup_unit": "batch"
+    },
+    "n_epochs": 30,
+    "optimizer_config": {
+      "l2": 0.0,
+      "lr": 0.01,
+      "optimizer": "adam"
+    },
+    "valid_split": "valid"
+  },
+  "logging_config": {
+    "checkpointer_config": {
+      "checkpoint_metric": {
+        "primary/cow-tus-dataset/valid/accuracy": "max"
+      },
+      "checkpoint_runway": 10
+    },
+    "checkpointing": true,
+    "evaluation_freq": 1
+  },
+  "meta_config": {
+    "device": 0
+  },
+  "metrics": {
+    "primary_multiclass": [
+      "accuracy"
+    ]
+  },
+  "preprocess_transforms": [
+    {
+      "args": {
+        "size": [
+          224,
+          224
+        ]
+      },
+      "fn": "resize_clip"
+    },
+    {
+      "args": {},
+      "fn": "normalize"
+    },
+    {
+      "args": {
+        "instance_only": true,
+        "p_add_diff_class": 0.0,
+        "p_add_same_class": 0.0,
+        "splits": [
+          "train",
+          "valid"
+        ]
+      },
+      "fn": "extract_instance"
+    },
+    {
+      "args": {
+        "offset": 3,
+        "offset_range": [
+          0,
+          1
+        ]
+      },
+      "fn": "random_offset"
+    }
+  ],
+  "representative_loop_sampling": true,
+  "sampler_configs": {
+    "train": {
+      "args": {
+        "num_samples": 150,
+        "replacement": true
+      },
+      "class_name": "RandomSampler"
+    }
+  },
+  "seed": 850185050,
+  "spatial_downsample": false,
+  "task": "primary_multiclass",
+  "task_str": "primary_multiclass",
+  "task_to_cardinality": {
+    "2normal_binary": 2,
+    "primary": 2,
+    "primary_multiclass": 4
+  },
+  "task_to_label_dict": {
+    "primary_multiclass": "primary_multiclass"
+  },
+  "tasks": [
+    "primary_multiclass"
+  ],
+  "temporal_downsample": true,
+  "tmp": [
+    {
+      "args": {
+        "size": [
+          224,
+          224
+        ]
+      },
+      "fn": "resize_clip"
+    },
+    {
+      "args": {},
+      "fn": "normalize"
+    },
+    {
+      "args": {
+        "instance_only": true,
+        "p_add_diff_class": 0.0,
+        "p_add_same_class": 0.0,
+        "splits": [
+          "train",
+          "valid"
+        ]
+      },
+      "fn": "extract_instance"
+    }
+  ],
+  "transform_fns": {
+    "test": [
+      {
+        "args": {
+          "size": [
+            224,
+            224
+          ]
+        },
+        "fn": "resize_clip"
+      },
+      {
+        "args": {},
+        "fn": "normalize"
+      },
+      {
+        "args": {
+          "instance_only": true,
+          "p_add_diff_class": 0.0,
+          "p_add_same_class": 0.0,
+          "splits": [
+            "train",
+            "valid"
+          ]
+        },
+        "fn": "extract_instance"
+      },
+      {
+        "args": {
+          "offset": 3,
+          "offset_range": [
+            0,
+            1
+          ]
+        },
+        "fn": "random_offset"
+      }
+    ],
+    "train": [
+      {
+        "args": {
+          "size": [
+            224,
+            224
+          ]
+        },
+        "fn": "resize_clip"
+      },
+      {
+        "args": {},
+        "fn": "normalize"
+      },
+      {
+        "args": {
+          "instance_only": true,
+          "p_add_diff_class": 0.0,
+          "p_add_same_class": 0.0,
+          "splits": [
+            "train",
+            "valid"
+          ]
+        },
+        "fn": "extract_instance"
+      },
+      {
+        "args": {
+          "offset": 3,
+          "offset_range": [
+            0,
+            1
+          ]
+        },
+        "fn": "random_offset"
+      }
+    ],
+    "valid": [
+      {
+        "args": {
+          "size": [
+            224,
+            224
+          ]
+        },
+        "fn": "resize_clip"
+      },
+      {
+        "args": {},
+        "fn": "normalize"
+      },
+      {
+        "args": {
+          "instance_only": true,
+          "p_add_diff_class": 0.0,
+          "p_add_same_class": 0.0,
+          "splits": [
+            "train",
+            "valid"
+          ]
+        },
+        "fn": "extract_instance"
+      },
+      {
+        "args": {
+          "offset": 3,
+          "offset_range": [
+            0,
+            1
+          ]
+        },
+        "fn": "random_offset"
+      }
+    ]
+  },
+  "transforms": {
+    "__doc__": "\nCommon transform function definitions and compose configurations\n",
+    "augmentation_fns": [
+      {
+        "args": {
+          "axis": 0
+        },
+        "fn": "random_flip"
+      },
+      {
+        "args": {
+          "axis": 1
+        },
+        "fn": "random_flip"
+      },
+      {
+        "args": {
+          "axis": 2
+        },
+        "fn": "random_flip"
+      },
+      {
+        "args": {
+          "brightness": [
+            0.5
+          ]
+        },
+        "fn": "jitter"
+      }
+    ],
+    "preprocess_fns": [
+      {
+        "args": {
+          "size": [
+            224,
+            224
+          ]
+        },
+        "fn": "resize_clip"
+      },
+      {
+        "args": {},
+        "fn": "normalize"
+      }
+    ],
+    "rls_transform_fn": {
+      "args": {
+        "instance_only": true,
+        "p_add_diff_class": 0.0,
+        "p_add_same_class": 0.0,
+        "splits": [
+          "train",
+          "valid"
+        ]
+      },
+      "fn": "extract_instance"
+    },
+    "spatial_downsample_transform_fn": {
+      "args": {
+        "size": [
+          120,
+          80
+        ]
+      },
+      "fn": "resize_clip"
+    },
+    "temporal_downsample_transform_fn": {
+      "args": {
+        "offset": 3,
+        "offset_range": [
+          0,
+          1
+        ]
+      },
+      "fn": "random_offset"
+    }
+  }
+}

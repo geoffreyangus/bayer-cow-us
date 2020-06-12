@@ -1,0 +1,246 @@
+{
+  "__doc__": "\nConfiguration for training harness.\n",
+  "all_data": true,
+  "data_augmentation": false,
+  "dataloader_configs": {
+    "train": {
+      "batch_size": 1,
+      "num_workers": 8,
+      "shuffle": false
+    },
+    "valid": {
+      "batch_size": 1,
+      "num_workers": 8,
+      "shuffle": true
+    }
+  },
+  "dataset_args": {
+    "dataset_dir": "data/split/Q3/no-holdout-test/3",
+    "labels_path": "data/labels/Q3/instances.csv"
+  },
+  "dataset_class": "InstanceDataset",
+  "decoder_args": {
+    "dropout_p": 0.0
+  },
+  "decoder_class": "AttDecoder",
+  "device": 0,
+  "encoder_args": {
+    "modality": "gray",
+    "weights_path": "i3d/model_flow.pth"
+  },
+  "encoder_class": "I3DEncoder",
+  "exp_dir": "experiments/proposal/instance-level-learning/ST-2normal_binary/full_size/no_augmentation/all_data/fold_3",
+  "fold": 3,
+  "hypothesis_conditions": [
+    "proposal",
+    "instance-level-learning",
+    "ST-2normal_binary",
+    "full_size",
+    "no_augmentation",
+    "all_data",
+    "fold_3"
+  ],
+  "instance_level": true,
+  "labels_path": "data/labels/Q3/instances.csv",
+  "learner_config": {
+    "lr_scheduler_config": {
+      "lr_scheduler": "step",
+      "step_config": {
+        "gamma": 0.5,
+        "step_size": 6
+      },
+      "warmup_steps": null,
+      "warmup_unit": "batch"
+    },
+    "n_epochs": 20,
+    "optimizer_config": {
+      "l2": 0.0,
+      "lr": 0.0001,
+      "optimizer": "adam"
+    },
+    "valid_split": "valid"
+  },
+  "logging_config": {
+    "checkpointer_config": {
+      "checkpoint_metric": {
+        "2normal_binary/cow-tus-dataset/valid/roc_auc": "max"
+      },
+      "checkpoint_runway": 10
+    },
+    "checkpointing": true,
+    "evaluation_freq": 1
+  },
+  "meta_config": {
+    "device": 0
+  },
+  "metrics": {
+    "2normal_binary": [
+      "accuracy",
+      "roc_auc",
+      "precision",
+      "recall",
+      "f1"
+    ]
+  },
+  "preprocess_transforms": [
+    {
+      "args": {
+        "size": [
+          224,
+          224
+        ]
+      },
+      "fn": "resize_clip"
+    },
+    {
+      "args": {},
+      "fn": "normalize"
+    }
+  ],
+  "representative_loop_sampling": false,
+  "sampler_configs": {
+    "train": {
+      "args": {
+        "class_probs": [
+          0.7,
+          0.3
+        ],
+        "num_samples": 300,
+        "replacement": true,
+        "weight_task": "2normal_binary"
+      },
+      "class_name": "WeightedRandomSampler"
+    }
+  },
+  "seed": 382565626,
+  "spatial_downsample": false,
+  "task": "2normal_binary",
+  "task_str": "2normal_binary",
+  "task_to_cardinality": {
+    "2normal_binary": 2,
+    "primary": 2,
+    "primary_multiclass": 4
+  },
+  "task_to_label_dict": {
+    "2normal_binary": "2normal_binary"
+  },
+  "tasks": [
+    "2normal_binary"
+  ],
+  "temporal_downsample": false,
+  "transform_fns": {
+    "test": [
+      {
+        "args": {
+          "size": [
+            224,
+            224
+          ]
+        },
+        "fn": "resize_clip"
+      },
+      {
+        "args": {},
+        "fn": "normalize"
+      }
+    ],
+    "train": [
+      {
+        "args": {
+          "size": [
+            224,
+            224
+          ]
+        },
+        "fn": "resize_clip"
+      },
+      {
+        "args": {},
+        "fn": "normalize"
+      }
+    ],
+    "valid": [
+      {
+        "args": {
+          "size": [
+            224,
+            224
+          ]
+        },
+        "fn": "resize_clip"
+      },
+      {
+        "args": {},
+        "fn": "normalize"
+      }
+    ]
+  },
+  "transforms": {
+    "__doc__": "\nCommon transform function definitions and compose configurations\n",
+    "augmentation_fns": [
+      {
+        "args": {
+          "axis": 2
+        },
+        "fn": "random_flip"
+      },
+      {
+        "args": {
+          "brightness": [
+            0.5
+          ],
+          "contrast": [
+            0.5
+          ]
+        },
+        "fn": "jitter"
+      }
+    ],
+    "preprocess_fns": [
+      {
+        "args": {
+          "size": [
+            224,
+            224
+          ]
+        },
+        "fn": "resize_clip"
+      },
+      {
+        "args": {},
+        "fn": "normalize"
+      }
+    ],
+    "rls_transform_fn": {
+      "args": {
+        "instance_only": true,
+        "p_add_diff_class": 0.0,
+        "p_add_same_class": 0.0,
+        "splits": [
+          "train",
+          "valid"
+        ]
+      },
+      "fn": "extract_instance"
+    },
+    "spatial_downsample_transform_fn": {
+      "args": {
+        "size": [
+          120,
+          80
+        ]
+      },
+      "fn": "resize_clip"
+    },
+    "temporal_downsample_transform_fn": {
+      "args": {
+        "offset": 3,
+        "offset_range": [
+          0,
+          1
+        ]
+      },
+      "fn": "random_offset"
+    }
+  }
+}
